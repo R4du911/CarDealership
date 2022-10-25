@@ -22,3 +22,4 @@ b.	 Der Verkäufer kann ein Auto verkaufen. In diesem Fall wird das Auto aus der
 
 Klassendiagramm
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+![image](https://user-images.githubusercontent.com/97988844/197715876-bf11229c-52d9-4413-9b28-8cdc8ac9bf6d.png)
