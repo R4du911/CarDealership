@@ -17,5 +17,5 @@ Ein Car-Dealership braucht eine Anwendung, an der sich Kunden für das Kaufen vo
 
 Klassendiagramm
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-!![image](https://user-images.githubusercontent.com/97988844/197753076-18b71f4d-ff92-498b-8a01-ea562c7367b7.png)
+![image](https://user-images.githubusercontent.com/97988844/197753833-00a2b1d1-5703-4641-a2fa-c93fd00b843b.png)
 
