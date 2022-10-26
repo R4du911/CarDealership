@@ -1,27 +1,28 @@
 # Car-Dealership
 
-Ein Car-Dealership braucht eine Anwendung, an der sich Kunden für das Kaufen von bestimmten Autos anmelden können. Jedes Auto hat einen Brand, ein Model, ein Registrierungsjahr, eine Motorisierung, einen Kaufpreis und eine boolsche Variable, um zu sehen ob das Auto zur Verfügung steht. 
+Ein Car-Dealership braucht eine Anwendung, an der sich Kunden für das Kaufen von Merchandise anmelden können.
 
-Jeder Kunde ist eine Person, die eine Geldsumme und eine Liste von Orders hat. Dazu, jeder Verkäufer ist eine Person, die einen Gehalt und Zugriff auf das Inventar von Autos besitzt. Das Inventar stellt alle Autos aus dem Dealership dar. 
+Jedes Auto ist eine Merchandise, die einen Brand, ein Model, ein Registrierungsjahr, eine Motorisierung, einen Kaufpreis und eine Liste von verwendbaren Parts hat. Jeder Part ist auch eine Merchandise, die einen Brand, ein Model und eine Liste von Cars hat, für denen es verwendbar ist.    
 
-Außerdem, jede Order enthält einen Kunden, einen Verkäufer, eine Liste von Autos, die er kaufen möchte, und zu dem noch das Datum, an dem die Order abgeschlossen wurde.
+Jeder Kunde ist eine Person, die eine Geldsumme und eine Liste von Orders hat. Dazu, jeder Verkäufer ist eine Person, die einen Gehalt und Zugriff auf das Inventar von Merchandise besitzt. Das Inventar stellt alle Merch aus dem Dealership dar.
 
-1.	Die Anwendung ermöglicht es den Kunden ein bestimmtes Auto zu kaufen.
+Außerdem, jede Order ist eine Liste von Merchandise  , die er kaufen möchte, und zudem noch das Datum, an dem die Order abgeschlossen wurde.
 
-2.	Mit der Anwendung können Sie die verfügbaren Autos und deren Kaufpreis sehen. 
+1.	Die Anwendung ermöglicht es den Kunden Merchandise zu kaufen, entweder ein bestimmtes Auto oder einen bestimmten Part.
 
-3.	Die Anwendung ermöglicht die Anzeige von Autos, die ein Kunde besitzt. 
+2.	Mit der Anwendung können Sie die verfügbaren Merchandise(Autos und Parts) und deren Kaufpreis sehen.
 
-4.	Jeder Kunde kann Autos kaufen, solange er Geld dafür hat. Wenn der Kunde ein Auto kaufen möchte, das nicht verfügbar ist oder kein Geld dafür hat, erhält er eine Fehlermeldung und das Auto wird nicht zu seiner Orderliste hinzugefügt. 
+3.	Die Anwendung ermöglicht die Anzeige von Autos und von Parts, die ein Kunde besitzt.
 
-5. Die Anwendung bietet die Möglichkeit an, mehrere Autos auf eine Order zu bestellen.
+4.	Jeder Kunde kann Merchandise(Autos und Parts) kaufen, solange er Geld dafür hat. Wenn der Kunde ein Auto oder einen Part kaufen möchte,  aber kein Geld dafür hat, erhält er eine Fehlermeldung und das Auto/Part wird nicht zu seiner Orderliste hinzugefügt.
+
+5.	Die Anwendung bietet die Möglichkeit an, mehrere Autos/Parts auf eine Order zu bestellen.
+
 
 
 
 
 Klassendiagramm
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-![image](https://user-images.githubusercontent.com/97988844/197753833-00a2b1d1-5703-4641-a2fa-c93fd00b843b.png)
-
 ![Diagram](https://user-images.githubusercontent.com/114949622/197870644-02953ed9-d527-4067-8419-0a6de4941eae.png)
 
