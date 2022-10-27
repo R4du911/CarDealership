@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Salesperson extends Person implements DealershipSystem{
@@ -26,31 +27,52 @@ public class Salesperson extends Person implements DealershipSystem{
         this.inventory = inventory;
     }
 
-    public void add(Merchandise merch){
-
+    @Override
+    public void add(Merchandise merch) {
+        this.inventory.add_Merch(merch);
     }
 
+    @Override
     public void remove(Merchandise merch) {
-
+        this.inventory.remove_Merch(merch);
     }
 
+    @Override
     public void update(Merchandise merch) {
-
-    }
-
-    public List<Car> getAllCar() {
-        return null;
-    }
-
-
-    public List<Part> getAllParts() {
-        return null;
+        for(Merchandise product: this.inventory.getCarsAndParts()){
+            if(product.getID()==merch.getID()){
+                this.inventory.remove_Merch(product);
+                this.inventory.add_Merch(merch);
+                break;
+            }
+        }
     }
 
     @Override
     public List<Car> getAllCars() {
-        return null;
+        List<Car> cars = new ArrayList<Car>();
+
+        for(Merchandise merch : this.inventory.getCarsAndParts()){
+            if(merch instanceof Car){
+                cars.add((Car) merch);
+            }
+        }
+
+        return cars;
     }
+
+    @Override
+    public List<Part> getAllParts() {
+        List<Part> parts  = new ArrayList<Part>();
+        for(Merchandise merch : this.inventory.getCarsAndParts()){
+            if(merch instanceof Part){
+                parts.add((Part) merch);
+            }
+        }
+        return parts;
+    }
+
+
 
     @Override
     public boolean checkStatus() {
