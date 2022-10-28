@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Salesperson extends Person implements DealershipSystem{
     private double salary;
-    private Inventory inventory;
+    final private Inventory inventory;
 
     public Salesperson(String user, String passwd, String firstName, String lastName, double salary, Inventory inventory) {
         super(user, passwd, firstName, lastName);
@@ -17,14 +17,6 @@ public class Salesperson extends Person implements DealershipSystem{
 
     public void setSalary(double salary) {
         this.salary = salary;
-    }
-
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
     }
 
     @Override
