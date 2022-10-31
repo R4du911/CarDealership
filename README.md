@@ -24,5 +24,6 @@ Außerdem, jede Model.Order ist eine Liste von Model.Merchandise  , die er kaufe
 
 Klassendiagramm
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-![Diagram2](https://user-images.githubusercontent.com/114949622/197992576-0d3b0876-cfac-44fd-9f87-c5ae2475dd87.png)
+![Diagrama3](https://user-images.githubusercontent.com/114949622/198679873-cf849bc9-8cd6-4023-b6f6-2a2baf5317b2.png)
+
 
