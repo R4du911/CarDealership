@@ -1,4 +1,7 @@
-public abstract class Person implements Register{
+package Model;
+import Interface.*;
+
+public abstract class Person implements Register {
     private String user;
     private String passwd;
     private String firstName;

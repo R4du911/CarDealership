@@ -1,14 +1,18 @@
+package Repo;
+
+import Model.Merchandise;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Inventory {
+public class InMemoInventory {
     private List<Merchandise> carsAndParts;
 
     public List<Merchandise> getCarsAndParts() {
         return carsAndParts;
     }
 
-    public Inventory() {
+    public InMemoInventory() {
         this.carsAndParts = new ArrayList<Merchandise>();
     }
 

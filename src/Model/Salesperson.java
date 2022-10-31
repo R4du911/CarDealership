@@ -1,14 +1,18 @@
+package Model;
+
 import java.util.ArrayList;
 import java.util.List;
+import Repo.*;
+import Interface.*;
 
-public class Salesperson extends Person implements DealershipSystem{
+public class Salesperson extends Person implements DealershipSystem {
     private double salary;
-    final private Inventory inventory;
+    final private InMemoInventory inMemoInventory;
 
-    public Salesperson(String user, String passwd, String firstName, String lastName, double salary, Inventory inventory) {
+    public Salesperson(String user, String passwd, String firstName, String lastName, double salary, InMemoInventory inventory) {
         super(user, passwd, firstName, lastName);
         this.salary = salary;
-        this.inventory = inventory;
+        this.inMemoInventory = inventory;
     }
 
     public double getSalary() {
@@ -21,20 +25,20 @@ public class Salesperson extends Person implements DealershipSystem{
 
     @Override
     public void add(Merchandise merch) {
-        this.inventory.add_Merch(merch);
+        this.inMemoInventory.add_Merch(merch);
     }
 
     @Override
     public void remove(Merchandise merch) {
-        this.inventory.remove_Merch(merch);
+        this.inMemoInventory.remove_Merch(merch);
     }
 
     @Override
     public void update(Merchandise merch) {
-        for(Merchandise product: this.inventory.getCarsAndParts()){
+        for(Merchandise product: this.inMemoInventory.getCarsAndParts()){
             if(product.getID()==merch.getID()){
-                this.inventory.remove_Merch(product);
-                this.inventory.add_Merch(merch);
+                this.inMemoInventory.remove_Merch(product);
+                this.inMemoInventory.add_Merch(merch);
                 break;
             }
         }
@@ -44,7 +48,7 @@ public class Salesperson extends Person implements DealershipSystem{
     public List<Car> getAllCars() {
         List<Car> cars = new ArrayList<Car>();
 
-        for(Merchandise merch : this.inventory.getCarsAndParts()){
+        for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
             if(merch instanceof Car){
                 cars.add((Car) merch);
             }
@@ -56,15 +60,13 @@ public class Salesperson extends Person implements DealershipSystem{
     @Override
     public List<Part> getAllParts() {
         List<Part> parts  = new ArrayList<Part>();
-        for(Merchandise merch : this.inventory.getCarsAndParts()){
+        for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
             if(merch instanceof Part){
                 parts.add((Part) merch);
             }
         }
         return parts;
     }
-
-
 
     @Override
     public boolean checkStatus() {

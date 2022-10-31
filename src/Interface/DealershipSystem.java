@@ -1,3 +1,9 @@
+package Interface;
+
+import Model.Car;
+import Model.Merchandise;
+import Model.Part;
+
 import java.util.List;
 
 public interface DealershipSystem {
