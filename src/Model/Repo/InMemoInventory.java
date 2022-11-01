@@ -1,4 +1,4 @@
-package Repo;
+package Model.Repo;
 
 import Model.Merchandise;
 

@@ -2,7 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.List;
-import Repo.*;
+import Model.Repo.*;
 import Interface.*;
 
 public class Salesperson extends Person implements DealershipSystem {

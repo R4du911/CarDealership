@@ -1,5 +1,5 @@
 package Model;
-import Repo.*;
+import Model.Repo.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,19 +51,23 @@ public class Customer extends Person{
         return parts;
     }
 
-    public void addOrder(ProductList products, Date date){
+    public void addOrder(ProductList products, Date date) throws IllegalArgumentException, ArithmeticException{
         Double sumPrice = 0.0;
 
         for(Merchandise merch : products.getPurchased()){
-            if(!this.inMemoInventory.getCarsAndParts().contains(merch)){
-                //throw exception not exist
-                return;
-            }else{
-                sumPrice += merch.getPrice();
-                if(sumPrice > this.getMoney()) {
-                    //throw exception not enough money
-                    return;
+            try {
+                if (!this.inMemoInventory.getCarsAndParts().contains(merch)) {
+                    throw new IllegalArgumentException();
+                } else {
+                    sumPrice += merch.getPrice();
+                    if (sumPrice > this.getMoney()) {
+                        throw new ArithmeticException();
+                    }
                 }
+            }catch(IllegalArgumentException err){
+                System.out.println("Product does not exist");
+            }catch(ArithmeticException err2){
+                System.out.println("Not enough money");
             }
         }
 
