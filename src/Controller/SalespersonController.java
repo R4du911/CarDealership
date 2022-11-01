@@ -4,15 +4,16 @@ import Model.Car;
 import Model.Merchandise;
 import Model.Part;
 import Model.Salesperson;
+import View.SalespersonView;
 
 import java.util.List;
 
 public class SalespersonController {
     final private Salesperson model;
-    final private Salesperson view;
+    final private SalespersonView view;
 
 
-    public SalespersonController(Salesperson model, Salesperson view) {
+    public SalespersonController(Salesperson model, SalespersonView view) {
         this.model = model;
         this.view = view;
     }

@@ -32,7 +32,7 @@ public class CustomerController {
     public List<Part> getAllParts() {return model.getAllParts();}
 
     public void addOrder(ProductList products, Date date){ model.addOrder(products,date);}
-    
+
     public void updateViewCustomer(){
         //make view
     }
