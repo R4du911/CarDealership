@@ -22,6 +22,7 @@ Außerdem, jede Order ist eine Liste von Merchandise  , die er kaufen möchte, u
 
 Klassendiagramm
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-![Diagrama3](https://user-images.githubusercontent.com/114949622/198679873-cf849bc9-8cd6-4023-b6f6-2a2baf5317b2.png)
+![Diagram4](https://user-images.githubusercontent.com/114949622/199201659-53fa2a3a-0503-4751-a58f-bcf5008a6f74.png)
+
 
 
