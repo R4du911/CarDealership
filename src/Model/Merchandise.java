@@ -1,3 +1,5 @@
+package Model;
+
 public abstract class Merchandise {
     private String brand;
     private String model;

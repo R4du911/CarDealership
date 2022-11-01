@@ -1,17 +1,20 @@
+package Model;
+import Repo.*;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Customer extends Person{
-    private List<Order> orders;
+    private final List<Order> orders;
     private Double money;
-    final private Inventory inventory;
+    private final InMemoInventory inMemoInventory;
 
-    public Customer(String user, String passwd, String firstName, String lastName, List<Order> orders, Double money, Inventory inventory) {
+    public Customer(String user, String passwd, String firstName, String lastName, List<Order> orders, Double money, InMemoInventory inventory) {
         super(user, passwd, firstName, lastName);
         this.orders = orders;
         this.money = money;
-        this.inventory = inventory;
+        this.inMemoInventory = inventory;
     }
 
     public List<Order> getOrders() {
@@ -29,7 +32,7 @@ public class Customer extends Person{
     public List<Car> getAllCars() {
         List<Car> cars = new ArrayList<Car>();
 
-        for(Merchandise merch : this.inventory.getCarsAndParts()){
+        for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
             if(merch instanceof Car){
                 cars.add((Car) merch);
             }
@@ -40,7 +43,7 @@ public class Customer extends Person{
 
     public List<Part> getAllParts() {
         List<Part> parts  = new ArrayList<Part>();
-        for(Merchandise merch : this.inventory.getCarsAndParts()){
+        for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
             if(merch instanceof Part){
                 parts.add((Part) merch);
             }
@@ -52,7 +55,7 @@ public class Customer extends Person{
         Double sumPrice = 0.0;
 
         for(Merchandise merch : products.getPurchased()){
-            if(!this.inventory.getCarsAndParts().contains(merch)){
+            if(!this.inMemoInventory.getCarsAndParts().contains(merch)){
                 //throw exception not exist
                 return;
             }else{

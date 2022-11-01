@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ad63f6f-3f5b-45db-926c-5cef23154c3d" name="Changes" comment="CRUD">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9ad63f6f-3f5b-45db-926c-5cef23154c3d" name="Changes" comment="test_if_push_works">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DealershipSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interface/DealershipSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repo/InMemoInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Merchandise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Merchandise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Part.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Part.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProductList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ProductList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interface/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salesperson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Salesperson.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +95,12 @@
       <workItem from="1666884896801" duration="1088000" />
       <workItem from="1666886015849" duration="1206000" />
       <workItem from="1666894319395" duration="3366000" />
-      <workItem from="1666945923508" duration="383000" />
+      <workItem from="1666945923508" duration="1809000" />
+      <workItem from="1666971156491" duration="945000" />
+      <workItem from="1667125753968" duration="137000" />
+      <workItem from="1667140540415" duration="17000" />
+      <workItem from="1667152628396" duration="262000" />
+      <workItem from="1667254258641" duration="849000" />
     </task>
     <task id="LOCAL-00001" summary="V1.0">
       <created>1666884622186</created>
@@ -130,7 +147,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -146,6 +163,11 @@
         <entry key="Branch">
           <value>
             <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
                   <option value="master" />
