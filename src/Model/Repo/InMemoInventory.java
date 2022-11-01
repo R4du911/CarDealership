@@ -20,12 +20,11 @@ public class InMemoInventory {
         this.carsAndParts = carsAndParts;
     }
 
-    public void add_Merch(Merchandise merch) {
+    public void add_Merch(Merchandise merch){
         this.carsAndParts.add(merch);
     }
 
     public void remove_Merch(Merchandise merch) {
         this.carsAndParts.remove(merch);
     }
-
 }
