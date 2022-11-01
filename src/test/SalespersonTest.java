@@ -9,6 +9,7 @@ import View.SalespersonView;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 class SalespersonTest {
     InMemoInventory inventory = new InMemoInventory();
@@ -18,7 +19,7 @@ class SalespersonTest {
     List<Part> parts = new ArrayList<>();
     List<Car> cars = new ArrayList<>();
 
-    @org.junit.jupiter.api.Test
+    @Test
     void add() {
         Car car = new Car(1, "Ford","Fiesta",1225.0,2005,"Diesel",parts);
         salespersonCtrl.add(car);
@@ -31,7 +32,7 @@ class SalespersonTest {
         System.out.println("Add working good..");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void remove() {
         Car car = new Car(3, "Ford","Fiesta",1225.0,2005,"Diesel",parts);
         salespersonCtrl.add(car);
@@ -46,7 +47,7 @@ class SalespersonTest {
         System.out.println("Remove working good..");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void update() {
         Car car1 = new Car(5, "Ford","Fiesta",1225.0,2005,"Diesel",parts);
         salespersonCtrl.add(car1);
@@ -63,7 +64,7 @@ class SalespersonTest {
         System.out.println("Update working good..");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getAllCars() {
         Car car1 = new Car(7, "Ford","Fiesta",1225.0,2005,"Diesel",parts);
         Car car2 = new Car(8, "Ford","Focus",1230.0,2010,"Diesel",parts);
@@ -82,7 +83,7 @@ class SalespersonTest {
         System.out.println("Display cars works good..");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getAllParts() {
         Car car1 = new Car(10, "Ford","Fiesta",1225.0,2005,"Diesel",parts);
         Part part1 = new Part(11,"Toyota","XCH-I",34.5,cars);

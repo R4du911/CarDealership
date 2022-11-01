@@ -2,6 +2,7 @@ package Model;
 
 import java.util.Date;
 
+
 public class Order {
     private ProductList productList;
     private Date date;

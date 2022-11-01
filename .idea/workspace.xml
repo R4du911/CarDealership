@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ad63f6f-3f5b-45db-926c-5cef23154c3d" name="Changes" comment="organised files in packages">
+    <list default="true" id="9ad63f6f-3f5b-45db-926c-5cef23154c3d" name="Changes" comment="xml changes">
+      <change afterPath="$PROJECT_DIR$/src/test/CustomerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Car-Dealership.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Car-Dealership.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Repo/InMemoInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Repo/InMemoInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/SalespersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/SalespersonTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +67,23 @@
       <recent name="test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SalespersonTest">
+  <component name="RunManager" selected="JUnit.CustomerTest.addOrder">
+    <configuration name="CustomerTest.addOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Car-Dealership" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.CustomerTest" />
+      <option name="METHOD_NAME" value="addOrder" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SalespersonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Car-Dealership" />
       <extension name="coverage">
@@ -113,22 +131,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SalespersonTest.remove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Car-Dealership" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.SalespersonTest" />
-      <option name="METHOD_NAME" value="remove" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SalespersonTest.update" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Car-Dealership" />
       <extension name="coverage">
@@ -158,11 +160,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CustomerTest.addOrder" />
         <item itemvalue="JUnit.SalespersonTest" />
         <item itemvalue="JUnit.SalespersonTest.getAllCars" />
         <item itemvalue="JUnit.SalespersonTest.add" />
         <item itemvalue="JUnit.SalespersonTest.update" />
-        <item itemvalue="JUnit.SalespersonTest.remove" />
       </list>
     </recent_temporary>
   </component>

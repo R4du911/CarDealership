@@ -3,6 +3,7 @@ import Model.Repo.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Customer extends Person{
@@ -55,22 +56,19 @@ public class Customer extends Person{
         Double sumPrice = 0.0;
 
         for(Merchandise merch : products.getPurchased()){
-            try {
                 if (!this.inMemoInventory.getCarsAndParts().contains(merch)) {
-                    throw new IllegalArgumentException();
+                    throw new IllegalArgumentException("Product does not exist");
                 } else {
                     sumPrice += merch.getPrice();
                     if (sumPrice > this.getMoney()) {
-                        throw new ArithmeticException();
+                        throw new ArithmeticException("Not enough money");
                     }
                 }
-            }catch(IllegalArgumentException err){
-                System.out.println("Product does not exist");
-            }catch(ArithmeticException err2){
-                System.out.println("Not enough money");
-            }
         }
 
+        for(Merchandise merch : products.getPurchased()) {
+            this.inMemoInventory.remove_Merch(merch);
+        }
         this.setMoney(this.getMoney() - sumPrice);
         this.orders.add(new Order(products,date));
     }
