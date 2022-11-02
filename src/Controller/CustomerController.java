@@ -31,7 +31,13 @@ public class CustomerController {
 
     public List<Part> getAllParts() {return model.getAllParts();}
 
-    public void addOrder(ProductList products, Date date){ model.addOrder(products,date);}
+    public void addOrder(Date date){ model.addOrder(date);}
+
+    public void addProductToList(Merchandise merch){ model.addProductToList(merch);}
+
+    public void removeProductFromList(Merchandise merch){ model.removeProductFromList(merch);}
+
+    public List<Merchandise> viewPendingOrder(){return model.viewPendingOrder();}
 
     public void updateViewCustomer(){
         //make view
