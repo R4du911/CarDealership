@@ -1,7 +1,7 @@
 package Model;
 import Interface.*;
 
-public abstract class Person implements Register {
+public abstract class Person{
     private String user;
     private String passwd;
     private String firstName;

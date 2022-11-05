@@ -99,8 +99,4 @@ public class Customer extends Person implements CustomerSystem {
         return this.pendingOrder.getPurchased();
     }
 
-    @Override
-    public boolean checkStatus() {
-        return false;
-    }
 }

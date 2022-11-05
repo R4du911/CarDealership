@@ -68,10 +68,6 @@ public class Salesperson extends Person implements DealershipSystem {
         return parts;
     }
 
-    @Override
-    public boolean checkStatus() {
-        return false;
-    }
 }
 
 
