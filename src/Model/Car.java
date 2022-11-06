@@ -37,6 +37,16 @@ public class Car extends Merchandise {
     public void setUsableParts(List<Part> usableParts) {
         this.usableParts = usableParts;
     }
+
+    public String toStringCar(){
+        String result = "(" + this.getID() + ", " + this.getBrand() + ", " + this.getModel() + ", " + this.getYearOfReg() + ", " +
+                this.getMotor() + ", " + this.getPrice() + ", ";
+        for(Part part : this.getUsableParts()){
+            result += part.toStringPart();
+        }
+        result += ")";
+        return result;
+    }
 }
 
 

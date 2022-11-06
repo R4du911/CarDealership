@@ -13,18 +13,25 @@ public class InMemoInventory {
     }
 
     public InMemoInventory() {
-        this.carsAndParts = new ArrayList<Merchandise>();
+        this.carsAndParts = new ArrayList<>();
     }
 
     public void setCarsAndParts(List<Merchandise> carsAndParts) {
         this.carsAndParts = carsAndParts;
     }
 
-    public void add_Merch(Merchandise merch){
+    public void add_Merch(Merchandise merch) {
         this.carsAndParts.add(merch);
     }
 
-    public void remove_Merch(Merchandise merch) {
-        this.carsAndParts.remove(merch);
+    public void remove_Merch(int ID) throws IllegalArgumentException {
+        for (Merchandise merch : this.getCarsAndParts()) {
+            if (merch.getID() == ID) {
+                this.carsAndParts.remove(merch);
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException("Product does not exist");
     }
 }

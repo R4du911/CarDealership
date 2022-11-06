@@ -17,6 +17,15 @@ public class Part extends Merchandise {
         super(brand, model, price,ID);
         this.forCars = forCars;
     }
+
+    public String toStringPart(){
+        String result = "(" + this.getID() + ", " + this.getBrand() + ", " + this.getModel() + ", " + this.getPrice() + ", ";
+        for(Car car : this.getForCars()){
+            result += car.toStringCar();
+        }
+        result += ")";
+        return result;
+    }
 }
 
 

@@ -7,7 +7,7 @@ import Model.Part;
 import java.util.List;
 
 public interface DealershipSystem {
-    void remove(Merchandise merch);
+    void remove(int ID);
     void add(Merchandise merch);
     void update(Merchandise merch);
     List<Part> getAllParts();

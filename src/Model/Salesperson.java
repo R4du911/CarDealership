@@ -2,6 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import Model.Repo.*;
 import Interface.*;
 
@@ -29,15 +30,15 @@ public class Salesperson extends Person implements DealershipSystem {
     }
 
     @Override
-    public void remove(Merchandise merch) {
-        this.inMemoInventory.remove_Merch(merch);
+    public void remove(int ID) {
+        this.inMemoInventory.remove_Merch(ID);
     }
 
     @Override
     public void update(Merchandise merch) {
-        for(Merchandise product: this.inMemoInventory.getCarsAndParts()){
-            if(product.getID()==merch.getID()){
-                this.inMemoInventory.remove_Merch(product);
+        for (Merchandise product : this.inMemoInventory.getCarsAndParts()) {
+            if (product.getID() == merch.getID()) {
+                this.inMemoInventory.remove_Merch(product.getID());
                 this.inMemoInventory.add_Merch(merch);
                 break;
             }
@@ -46,28 +47,46 @@ public class Salesperson extends Person implements DealershipSystem {
 
     @Override
     public List<Car> getAllCars() {
-        List<Car> cars = new ArrayList<Car>();
+        List<Car> cars = new ArrayList<>();
 
-        for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
-            if(merch instanceof Car){
+        for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
+            if (merch instanceof Car) {
                 cars.add((Car) merch);
             }
         }
-
         return cars;
     }
 
     @Override
     public List<Part> getAllParts() {
-        List<Part> parts  = new ArrayList<Part>();
-        for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
-            if(merch instanceof Part){
+        List<Part> parts = new ArrayList<>();
+        for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
+            if (merch instanceof Part) {
                 parts.add((Part) merch);
             }
         }
         return parts;
     }
 
+    public List<Part> getAllPartsForACar(int ID) throws IllegalArgumentException {
+        for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
+            if (merch.getID() == ID) {
+                Car car = (Car) merch;
+                return car.getUsableParts();
+            }
+        }
+        throw new IllegalArgumentException("Car does not exist");
+    }
+
+    public List<Car> getAllCarsForAPart(int ID) throws IllegalArgumentException {
+        for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
+            if (merch.getID() == ID) {
+                Part part = (Part) merch;
+                return part.getForCars();
+            }
+        }
+        throw new IllegalArgumentException("Part does not exist");
+    }
 }
 
 

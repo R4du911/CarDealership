@@ -1,4 +1,5 @@
 package Model;
+
 import Interface.CustomerSystem;
 import Model.Repo.*;
 
@@ -35,8 +36,8 @@ public class Customer extends Person implements CustomerSystem {
     public List<Car> getAllCars() {
         List<Car> cars = new ArrayList<Car>();
 
-        for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
-            if(merch instanceof Car){
+        for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
+            if (merch instanceof Car) {
                 cars.add((Car) merch);
             }
         }
@@ -45,57 +46,57 @@ public class Customer extends Person implements CustomerSystem {
     }
 
     public List<Part> getAllParts() {
-        List<Part> parts  = new ArrayList<>();
-        for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
-            if(merch instanceof Part){
+        List<Part> parts = new ArrayList<>();
+        for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
+            if (merch instanceof Part) {
                 parts.add((Part) merch);
             }
         }
         return parts;
     }
 
-    public void addOrder(Date date) throws IllegalArgumentException, ArithmeticException{
+    public void addOrder(Date date) throws IllegalArgumentException, ArithmeticException {
         Double sumPrice = 0.0;
 
-        if(this.pendingOrder.getPurchased().isEmpty()){
+        if (this.pendingOrder.getPurchased().isEmpty()) {
             throw new IllegalArgumentException("ProductList is empty");
         }
 
-        for(Merchandise merch : this.pendingOrder.getPurchased()){
-                if (!this.inMemoInventory.getCarsAndParts().contains(merch)) {
-                    throw new IllegalArgumentException("Product does not exist");
-                } else {
-                    sumPrice += merch.getPrice();
-                    if (sumPrice > this.getMoney()) {
-                        throw new ArithmeticException("Not enough money");
-                    }
+        for (Merchandise merch : this.pendingOrder.getPurchased()) {
+            if (!this.inMemoInventory.getCarsAndParts().contains(merch)) {
+                throw new IllegalArgumentException("Product does not exist");
+            } else {
+                sumPrice += merch.getPrice();
+                if (sumPrice > this.getMoney()) {
+                    throw new ArithmeticException("Not enough money");
                 }
+            }
         }
 
-        for(Merchandise merch : this.pendingOrder.getPurchased()) {
-            this.inMemoInventory.remove_Merch(merch);
+        for (Merchandise merch : this.pendingOrder.getPurchased()) {
+            this.inMemoInventory.remove_Merch(merch.getID());
         }
 
         this.setMoney(this.getMoney() - sumPrice);
 
         ProductList boughtMerch = new ProductList();
         boughtMerch.setPurchased(this.pendingOrder.getPurchased());
-        this.orders.add(new Order(boughtMerch,date));
+        this.orders.add(new Order(boughtMerch, date));
 
         this.pendingOrder.setPurchased(new ArrayList<>());
 
 
     }
 
-    public void addProductToList(Merchandise merch){
+    public void addProductToList(Merchandise merch) {
         this.pendingOrder.addProductToList(merch);
     }
 
-    public void removeProductFromList(Merchandise merch){
+    public void removeProductFromList(Merchandise merch) {
         this.pendingOrder.removeProductFromList(merch);
     }
 
-    public List<Merchandise> viewPendingOrder(){
+    public List<Merchandise> viewPendingOrder() {
         return this.pendingOrder.getPurchased();
     }
 
