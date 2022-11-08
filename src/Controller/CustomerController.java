@@ -27,19 +27,52 @@ public class CustomerController {
         model.setMoney(money);
     }
 
-    public List<Car> getAllCars() {return model.getAllCars();}
+    public List<Car> getAllCars() {
+        return model.getAllCars();
+    }
 
-    public List<Part> getAllParts() {return model.getAllParts();}
+    public List<Part> getAllParts() {
+        return model.getAllParts();
+    }
 
-    public void addOrder(Date date){ model.addOrder(date);}
+    public void addOrder(Date date) {
+        model.addOrder(date);
+    }
 
-    public void addProductToList(Merchandise merch){ model.addProductToList(merch);}
+    public void addProductToList(Merchandise merch) {
+        model.addProductToList(merch);
+    }
 
-    public void removeProductFromList(Merchandise merch){ model.removeProductFromList(merch);}
+    public void removeProductFromList(Merchandise merch) {
+        model.removeProductFromList(merch);
+    }
 
-    public List<Merchandise> viewPendingOrder(){return model.viewPendingOrder();}
+    public List<Merchandise> viewPendingOrder() {
+        return model.viewPendingOrder();
+    }
 
-    public void updateViewCustomer(){
-        //make view
+    public void updateViewAllOrders() {
+        List<Order> allOrders = this.getOrders();
+        this.view.printAllOrders(allOrders);
+    }
+
+    public void updateViewAllCars() {
+        List<Car> allCars = this.getAllCars();
+        this.view.printAllCars(allCars);
+    }
+
+    public void updateViewAllParts() {
+        List<Part> allParts = this.getAllParts();
+        this.view.printAllParts(allParts);
+    }
+
+    public void updateViewPendingOrder() {
+        List<Merchandise> buyCart = this.viewPendingOrder();
+        this.view.printPendingOrder(buyCart);
+    }
+
+    public void updateViewMoney() {
+        double money = this.getMoney();
+        this.view.printMoney(money);
     }
 }
