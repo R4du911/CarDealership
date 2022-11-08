@@ -26,4 +26,19 @@ public class ProductList {
     public void removeProductFromList(Merchandise merch){
         this.purchased.remove(merch);
     }
+
+    public String toStringProductList(){
+        String result = "This order has the following products: " + "\n";
+        int count = 1;
+        for(Merchandise product : this.purchased){
+            result += "Product " + count + ": ";
+            if(product instanceof Car){
+                result += ((Car) product).toStringCar();
+            }
+            else{
+                result += ((Part) product).toStringPart();
+            }
+        }
+        return result;
+    }
 }

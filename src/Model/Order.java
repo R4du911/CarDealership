@@ -27,4 +27,8 @@ public class Order {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public String toStringOrder(){
+        return "Date that the order was placed: " + this.date + "\n" + this.productList.toStringProductList();
+    }
 }
