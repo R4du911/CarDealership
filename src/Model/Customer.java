@@ -34,7 +34,7 @@ public class Customer extends Person implements CustomerSystem {
     }
 
     public List<Car> getAllCars() {
-        List<Car> cars = new ArrayList<Car>();
+        List<Car> cars = new ArrayList<>();
 
         for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
             if (merch instanceof Car) {
@@ -119,5 +119,4 @@ public class Customer extends Person implements CustomerSystem {
         }
         throw new IllegalArgumentException("Part does not exist");
     }
-
 }

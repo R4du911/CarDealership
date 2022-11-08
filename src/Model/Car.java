@@ -40,7 +40,7 @@ public class Car extends Merchandise {
 
     public String toStringCar(){
         return "(ID:" + this.getID() + ", Brand:" + this.getBrand() + ", Model:" + this.getModel() + ", Year Of Reg:" + this.getYearOfReg() + ", Motor:" +
-                this.getMotor() + ", Price:" + this.getPrice() + ")" + "\n";
+                this.getMotor() + ", Price:" + this.getPrice() + ")";
     }
 }
 

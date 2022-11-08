@@ -19,7 +19,7 @@ public class Part extends Merchandise {
     }
 
     public String toStringPart(){
-        return "(ID:" + this.getID() + ", Brand:" + this.getBrand() + ", Model:" + this.getModel() + ", Price:" + this.getPrice() + ")" + "\n";
+        return "(ID:" + this.getID() + ", Brand:" + this.getBrand() + ", Model:" + this.getModel() + ", Price:" + this.getPrice() + ")";
     }
 }
 
