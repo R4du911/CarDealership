@@ -6,7 +6,7 @@ import View.CustomerView;
 import java.util.Date;
 import java.util.List;
 
-public class CustomerController {
+public class CustomerController extends Controller{
     final private Customer model;
     final private CustomerView view;
 
@@ -43,8 +43,8 @@ public class CustomerController {
         model.addProductToList(merch);
     }
 
-    public void removeProductFromList(Merchandise merch) {
-        model.removeProductFromList(merch);
+    public void removeProductFromList(int ID) {
+        model.removeProductFromList(ID);
     }
 
     public List<Merchandise> viewPendingOrder() {
@@ -57,6 +57,20 @@ public class CustomerController {
 
     public List<Car> getAllCarsForAPart(int ID) {
         return model.getAllCarsForAPart(ID);
+    }
+
+    public Car findMin(){
+        Car minCar = null;
+        double minPrice = Double.MAX_VALUE;
+
+        for(Car car : this.getAllCars()) {
+            if(car.getPrice() < minPrice) {
+                minPrice = car.getPrice();
+                minCar = car;
+            }
+        }
+
+        return minCar;
     }
 
     public void updateViewAllOrders() {
@@ -92,5 +106,10 @@ public class CustomerController {
     public void updateViewCarsForAPart(int ID) {
         List<Car> cars = this.getAllCarsForAPart(ID);
         this.view.printAllCars(cars);
+    }
+
+    public void updateViewMinCar(){
+        Car car = this.findMin();
+        this.view.printMinCar(car);
     }
 }

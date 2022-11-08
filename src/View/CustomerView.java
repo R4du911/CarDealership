@@ -39,4 +39,6 @@ public class CustomerView {
     public void printMoney(double money) {
         System.out.println("Money: " + money + "\n");
     }
+
+    public void printMinCar(Car car){System.out.println(car.toStringCar() + "\n");}
 }

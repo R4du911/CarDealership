@@ -19,16 +19,7 @@ public class Part extends Merchandise {
     }
 
     public String toStringPart(){
-        String result = "(ID:" + this.getID() + ", Brand:" + this.getBrand() + ", Model:" + this.getModel() + ", Price:" + this.getPrice() + ")" + "\n" +
-                "Part can be used for these cars:" + "\n" + "[";
-        int count = 1;
-        for(Car car : this.getForCars()){
-            result += "Car " + count + ": (ID:" + car.getID() + ", Brand:" + car.getBrand() + ", Model:" + car.getModel() + ", Year Of Reg:" + car.getYearOfReg() + ", Motor:" +
-                    car.getMotor() + ", Price:" + car.getPrice() + ")" + "\n";
-            count += 1;
-        }
-        result += "])";
-        return result;
+        return "(ID:" + this.getID() + ", Brand:" + this.getBrand() + ", Model:" + this.getModel() + ", Price:" + this.getPrice() + ")" + "\n";
     }
 }
 

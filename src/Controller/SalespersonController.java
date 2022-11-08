@@ -6,9 +6,10 @@ import Model.Part;
 import Model.Salesperson;
 import View.SalespersonView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class SalespersonController {
+public class SalespersonController extends Controller {
     final private Salesperson model;
     final private SalespersonView view;
 
@@ -42,6 +43,16 @@ public class SalespersonController {
 
     public List<Car> getAllCarsForAPart(int ID){return model.getAllCarsForAPart(ID);}
 
+    public List<Car> filterAllCarsByPrice(){
+        List<Car> allCars = new ArrayList<>();
+        for(Car car : model.getAllCars()){
+            if(car.getPrice() < 10000){
+                allCars.add(car);
+            }
+        }
+        return allCars;
+    }
+
     public void updateViewAllCars(){
         List<Car> allCars = this.getAllCars();
         this.view.printAllCars(allCars);
@@ -64,6 +75,11 @@ public class SalespersonController {
 
     public void updateViewCarsForAPart(int ID){
         List<Car> cars = this.getAllCarsForAPart(ID);
+        this.view.printAllCars(cars);
+    }
+
+    public void updateViewFilterAllCarsByPrice(){
+        List<Car> cars = this.filterAllCarsByPrice();
         this.view.printAllCars(cars);
     }
 

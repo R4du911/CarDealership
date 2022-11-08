@@ -92,8 +92,8 @@ public class Customer extends Person implements CustomerSystem {
         this.pendingOrder.addProductToList(merch);
     }
 
-    public void removeProductFromList(Merchandise merch) {
-        this.pendingOrder.removeProductFromList(merch);
+    public void removeProductFromList(int ID) {
+        this.pendingOrder.removeProductFromList(ID);
     }
 
     public List<Merchandise> viewPendingOrder() {

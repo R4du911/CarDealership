@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CustomerSystem {
     void addProductToList(Merchandise merch);
-    void removeProductFromList(Merchandise merch);
+    void removeProductFromList(int ID);
     List<Merchandise> viewPendingOrder();
     void addOrder(Date date);
 }

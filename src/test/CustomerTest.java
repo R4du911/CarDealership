@@ -36,13 +36,16 @@ class CustomerTest {
     void removeProductFromList() {
         Car car = new Car(3, "Ford", "Fiesta", 1225.0, 2005, "Diesel", parts);
         customerCtrl.addProductToList(car);
-        customerCtrl.removeProductFromList(car);
+        customerCtrl.removeProductFromList(3);
         assert (!customerCtrl.viewPendingOrder().contains(car));
 
         Part part = new Part(4, "Toyota", "XCH-I", 34.5, cars);
         customerCtrl.addProductToList(part);
-        customerCtrl.removeProductFromList(part);
+        customerCtrl.removeProductFromList(4);
         assert (!customerCtrl.viewPendingOrder().contains(part));
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> customerCtrl.removeProductFromList(20));
+        assertEquals("Product does not exist", exception.getMessage());
 
         System.out.println("Remove product works good..");
     }
