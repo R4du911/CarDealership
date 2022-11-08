@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ad63f6f-3f5b-45db-926c-5cef23154c3d" name="Changes" comment="organised files in packages">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Part.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Part.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ProductList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ProductList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/CustomerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/CustomerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +65,7 @@
       <recent name="test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CustomerTest">
+  <component name="RunManager" selected="JUnit.CustomerTest.getAllCarsForAPart">
     <configuration name="CustomerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Car-Dealership" />
       <extension name="coverage">
@@ -83,7 +81,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CustomerTest.addOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CustomerTest.getAllCarsForAPart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Car-Dealership" />
       <extension name="coverage">
         <pattern>
@@ -93,13 +91,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.CustomerTest" />
-      <option name="METHOD_NAME" value="addOrder" />
+      <option name="METHOD_NAME" value="getAllCarsForAPart" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CustomerTest.addProdToPending" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CustomerTest.getAllPartsForACar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Car-Dealership" />
       <extension name="coverage">
         <pattern>
@@ -109,7 +107,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.CustomerTest" />
-      <option name="METHOD_NAME" value="addProdToPending" />
+      <option name="METHOD_NAME" value="getAllPartsForACar" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -159,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SalespersonTest" />
+        <item itemvalue="JUnit.CustomerTest.getAllCarsForAPart" />
+        <item itemvalue="JUnit.CustomerTest.getAllPartsForACar" />
         <item itemvalue="JUnit.CustomerTest" />
+        <item itemvalue="JUnit.SalespersonTest" />
         <item itemvalue="JUnit.CustomerTest.viewPendingOrder" />
-        <item itemvalue="JUnit.CustomerTest.addProdToPending" />
-        <item itemvalue="JUnit.CustomerTest.addOrder" />
       </list>
     </recent_temporary>
   </component>

@@ -100,4 +100,24 @@ public class Customer extends Person implements CustomerSystem {
         return this.pendingOrder.getPurchased();
     }
 
+    public List<Part> getAllPartsForACar(int ID) throws IllegalArgumentException {
+        for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
+            if (merch.getID() == ID && merch instanceof Car) {
+                Car car = (Car) merch;
+                return car.getUsableParts();
+            }
+        }
+        throw new IllegalArgumentException("Car does not exist");
+    }
+
+    public List<Car> getAllCarsForAPart(int ID) throws IllegalArgumentException {
+        for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
+            if (merch.getID() == ID && merch instanceof Part) {
+                Part part = (Part) merch;
+                return part.getForCars();
+            }
+        }
+        throw new IllegalArgumentException("Part does not exist");
+    }
+
 }

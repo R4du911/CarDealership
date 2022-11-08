@@ -51,6 +51,14 @@ public class CustomerController {
         return model.viewPendingOrder();
     }
 
+    public List<Part> getAllPartsForACar(int ID) {
+        return model.getAllPartsForACar(ID);
+    }
+
+    public List<Car> getAllCarsForAPart(int ID) {
+        return model.getAllCarsForAPart(ID);
+    }
+
     public void updateViewAllOrders() {
         List<Order> allOrders = this.getOrders();
         this.view.printAllOrders(allOrders);
@@ -74,5 +82,15 @@ public class CustomerController {
     public void updateViewMoney() {
         double money = this.getMoney();
         this.view.printMoney(money);
+    }
+
+    public void updateViewPartsForACar(int ID) {
+        List<Part> parts = this.getAllPartsForACar(ID);
+        this.view.printAllParts(parts);
+    }
+
+    public void updateViewCarsForAPart(int ID) {
+        List<Car> cars = this.getAllCarsForAPart(ID);
+        this.view.printAllCars(cars);
     }
 }

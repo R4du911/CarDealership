@@ -70,7 +70,7 @@ public class Salesperson extends Person implements DealershipSystem {
 
     public List<Part> getAllPartsForACar(int ID) throws IllegalArgumentException {
         for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
-            if (merch.getID() == ID) {
+            if (merch.getID() == ID && merch instanceof Car) {
                 Car car = (Car) merch;
                 return car.getUsableParts();
             }
@@ -80,7 +80,7 @@ public class Salesperson extends Person implements DealershipSystem {
 
     public List<Car> getAllCarsForAPart(int ID) throws IllegalArgumentException {
         for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
-            if (merch.getID() == ID) {
+            if (merch.getID() == ID && merch instanceof Part) {
                 Part part = (Part) merch;
                 return part.getForCars();
             }
