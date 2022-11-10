@@ -43,10 +43,10 @@ public class SalespersonController extends Controller {
 
     public List<Car> getAllCarsForAPart(int ID){return model.getAllCarsForAPart(ID);}
 
-    public List<Car> filterAllCarsByPrice(){
+    public List<Car> filterAllCarsByPrice(int price){
         List<Car> allCars = new ArrayList<>();
         for(Car car : model.getAllCars()){
-            if(car.getPrice() < 10000){
+            if(car.getPrice() < price){
                 allCars.add(car);
             }
         }
@@ -78,8 +78,8 @@ public class SalespersonController extends Controller {
         this.view.printAllCars(cars);
     }
 
-    public void updateViewFilterAllCarsByPrice(){
-        List<Car> cars = this.filterAllCarsByPrice();
+    public void updateViewFilterAllCarsByPrice(int price){
+        List<Car> cars = this.filterAllCarsByPrice(price);
         this.view.printAllCars(cars);
     }
 

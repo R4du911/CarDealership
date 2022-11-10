@@ -7,8 +7,11 @@ import View.CustomerView;
 import View.SalespersonView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+import static java.lang.System.exit;
 
 public class Menu implements RegisterLogin {
 
@@ -17,7 +20,7 @@ public class Menu implements RegisterLogin {
     private final UserRepo userRepo = new UserRepo();
 
     @Override
-    public void login() throws IllegalArgumentException{
+    public void login() throws IllegalArgumentException {
         Scanner console = new Scanner(System.in);
         System.out.println("Your user name: ");
         String user = console.nextLine();
@@ -25,40 +28,41 @@ public class Menu implements RegisterLogin {
         System.out.println("Your password: ");
         String passwd = console.nextLine();
 
-        if(userRepo.getUsers().isEmpty()){
+        if (userRepo.getUsers().isEmpty()) {
             System.out.println("User does not exist, do you want to register: ");
             String answer = console.nextLine();
 
-            if(answer.equals("ja")){
+            if (answer.equals("ja")) {
                 this.register();
             }
         }
 
         boolean found = false;
-        for(Person userSaved : userRepo.getUsers()){
+        for (Person userSaved : userRepo.getUsers()) {
 
-            if(userSaved.getUser().equals(user) && !userSaved.getPasswd().equals(passwd)){
+            if (userSaved.getUser().equals(user) && !userSaved.getPasswd().equals(passwd)) {
                 throw new IllegalArgumentException("Wrong password");
             }
 
-            if(userSaved.getUser().equals(user) && userSaved.getPasswd().equals(passwd)){
+            if (userSaved.getUser().equals(user) && userSaved.getPasswd().equals(passwd)) {
                 found = true;
-                if(userSaved instanceof Customer){
+                if (userSaved instanceof Customer) {
                     this.inventory = new InMemoInventory();
                     CustomerView view = new CustomerView();
-                    this.controller = new CustomerController((Customer) userSaved,view);
+                    this.controller = new CustomerController((Customer) userSaved, view);
+                    this.populateInMemory();
                     this.menu();
-                }
-                else{
+                } else {
                     this.inventory = new InMemoInventory();
                     SalespersonView view = new SalespersonView();
                     this.controller = new SalespersonController((Salesperson) userSaved, view);
+                    this.populateInMemory();
                     this.menu();
                 }
             }
         }
 
-        if(!found) {
+        if (!found) {
             System.out.println("User does not exist, do you want to register: ");
             String answer = console.nextLine();
 
@@ -70,20 +74,20 @@ public class Menu implements RegisterLogin {
     }
 
     @Override
-    public void register() throws IllegalArgumentException{
+    public void register() throws IllegalArgumentException {
         Scanner console = new Scanner(System.in);
         System.out.println("You want to register as an: ");
         String type = console.nextLine();
 
-        if(!type.equals("Customer") && !type.equals("Salesperson")){
+        if (!type.equals("Customer") && !type.equals("Salesperson")) {
             throw new IllegalArgumentException("Type does not exist");
         }
 
         System.out.println("Your user name: ");
         String user = console.nextLine();
 
-        for(Person userSaved : userRepo.getUsers()){
-            if(userSaved.getUser().equals(user)){
+        for (Person userSaved : userRepo.getUsers()) {
+            if (userSaved.getUser().equals(user)) {
                 throw new IllegalArgumentException("User already exist. Consider logging in");
             }
         }
@@ -97,17 +101,17 @@ public class Menu implements RegisterLogin {
         System.out.println("Your last Name: ");
         String lastName = console.nextLine();
 
-        if(type.equals("Customer")){
+        if (type.equals("Customer")) {
             this.inventory = new InMemoInventory();
             this.populateInMemory();
-            Customer customer = new Customer(user,passwd,firstName,lastName,25000.0,inventory);
+            Customer customer = new Customer(user, passwd, firstName, lastName, 25000.0, inventory);
             userRepo.addUser(customer);
             CustomerView view = new CustomerView();
-            this.controller = new CustomerController(customer,view);
+            this.controller = new CustomerController(customer, view);
             this.menu();
         }
 
-        if(type.equals("Salesperson")) {
+        if (type.equals("Salesperson")) {
             this.inventory = new InMemoInventory();
             this.populateInMemory();
             Salesperson salesperson = new Salesperson(user, passwd, firstName, lastName, 1300.0, inventory);
@@ -118,26 +122,97 @@ public class Menu implements RegisterLogin {
         }
     }
 
-    public void menu(){
+    public void menu() {
 
         //customer menu
-        if(controller instanceof CustomerController){
-            CustomerController customerController;
-            customerController = (CustomerController) this.controller;
+        if (controller instanceof CustomerController) {
 
             //menu for Customer...
+            System.out.println("Options: ");
+            System.out.println("[1]-Add product to shopping list ");
+            System.out.println("[2]-Remove product from shopping list");
+            System.out.println("[3]-Place the order(products from shopping list)");
+            System.out.println("[4]-View all products from shopping list");//updateViewPendingOrder
+            System.out.println("[5]-Show all car options for purchase");//updateViewAllCars
+            System.out.println("[6]-Show all part options for purchase");//updateViewAllParts
+            System.out.println("[7]-See how much money you have");//updateViewMoney
+            System.out.println("[8]-Show the cheapest car available");//updateViewMinCar
+            System.out.println("[[9]]-Show all orders that you have made");//updateViewAllOrders
+            System.out.println("[10]-Show all usable parts for a car");//updateViewPartsForACar
+            System.out.println("[11]-Show all cars that match a part");//updateViewCarsForAPart
+            System.out.println("<<Press 0 key for log out>>");
+
+            System.out.println("Choose an option");
+            Scanner console = new Scanner(System.in);
+            int option = console.nextInt();
+
+            switch (option) {
+                case 1:
+                    System.out.println("Do you want to add a car or a part");
+                    this.menu();
+                case 2:
+                    System.out.println("What Id has the product you want to remove?");
+                    ((CustomerController) this.controller).removeProductFromList(console.nextInt());
+                    this.menu();
+                case 3:
+                    Date date = new Date();
+                    ((CustomerController) this.controller).addOrder(date);
+                    this.menu();
+                case 4:
+                    ((CustomerController) this.controller).updateViewPendingOrder();
+                    this.menu();
+                case 5:
+                    ((CustomerController) this.controller).updateViewAllCars();
+                    this.menu();
+                case 6:
+                    ((CustomerController) this.controller).updateViewAllParts();
+                    this.menu();
+                case 7:
+                    ((CustomerController) this.controller).updateViewMoney();
+                    this.menu();
+                case 8:
+                    ((CustomerController) this.controller).updateViewMinCar();
+                    this.menu();
+                case 9:
+                    ((CustomerController) this.controller).updateViewAllOrders();
+                    this.menu();
+                case 10:
+                    System.out.println("What ID has the car?");
+                    ((CustomerController) this.controller).updateViewPartsForACar(console.nextInt());
+                    this.menu();
+                case 11:
+                    System.out.println("What ID has the part?");
+                    ((CustomerController) this.controller).updateViewCarsForAPart(console.nextInt());
+                    this.menu();
+                case 0:
+                    exit(0);
+                default:
+                    System.out.println("Wrong input...try a value from 0 to 11");
+                    this.menu();
+            }
+
+
         }
 
         //salesperson menu
-        else{
-            SalespersonController salespersonController;
-            salespersonController = (SalespersonController) this.controller;
+        else {
 
             //menu for Salesperson...
+            System.out.println("[1]-Add a product to inventory");//add
+            System.out.println("[2]-Remove a product from inventory");//remove
+            System.out.println("[3]-Update a product from inventory");//update
+            System.out.println("[4]-View all cars from inventory");//updateViewAllCars
+            System.out.println("[5]-View all parts from inventory");//updateViewAllParts
+            System.out.println("[6]-Show your salary");//updateViewSalary
+            System.out.println("[7]-Show all usable parts for a car");//updateViewPartsForACar
+            System.out.println("[8]-Show all cars that match a part");//updateViewCarsForAPart
+            System.out.println("[9]-Filter cars by given price");//updateViewFilterAllCarsByPrice
+            System.out.println("<<Press 0 key for log out>>");//updateViewFilterAllCarsByPrice
+            .
         }
     }
 
-    public void populateInMemory(){
+    public void populateInMemory() {
         List<Part> parts = new ArrayList<>();
         Car car1 = new Car(1, "Ford", "Fiesta", 2225.0, 2005, "Diesel", parts);
         Car car2 = new Car(2, "Ford", "Focus", 1230.0, 2010, "Diesel", parts);
@@ -146,7 +221,7 @@ public class Menu implements RegisterLogin {
         cars.add(car1);
         cars.add(car2);
 
-        Part part1 = new Part(3,"Toyota", "XCH-I", 34.5, cars);
+        Part part1 = new Part(3, "Toyota", "XCH-I", 34.5, cars);
         parts.add(part1);
         car1.setUsableParts(parts);
         car2.setUsableParts(parts);
