@@ -6,10 +6,7 @@ import Model.Repo.UserRepo;
 import View.CustomerView;
 import View.SalespersonView;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static java.lang.System.exit;
 
@@ -18,6 +15,7 @@ public class Menu implements RegisterLogin {
     private Controller controller;
     private InMemoInventory inventory;
     private final UserRepo userRepo = new UserRepo();
+    private Merchandise merchandise;
 
     @Override
     public void login() throws IllegalArgumentException {
@@ -151,7 +149,7 @@ public class Menu implements RegisterLogin {
                     System.out.println("Do you want to add a car or a part");
                     this.menu();
                 case 2:
-                    System.out.println("What Id has the product you want to remove?");
+                    System.out.println("What ID has the product you want to remove?");
                     ((CustomerController) this.controller).removeProductFromList(console.nextInt());
                     this.menu();
                 case 3:
@@ -208,7 +206,87 @@ public class Menu implements RegisterLogin {
             System.out.println("[8]-Show all cars that match a part");//updateViewCarsForAPart
             System.out.println("[9]-Filter cars by given price");//updateViewFilterAllCarsByPrice
             System.out.println("<<Press 0 key for log out>>");//updateViewFilterAllCarsByPrice
-            .
+
+            System.out.println("Choose an option");
+            Scanner console = new Scanner(System.in);
+            int option = console.nextInt();
+
+            switch (option) {
+                case 1:
+                    System.out.println("Do you want to add a car or a part to inventory?");
+                    //logic for  add merchandise
+                    this.menu();
+                case 2:
+                    System.out.println("What ID has the product you want to remove from inventory?");
+                    ((SalespersonController) this.controller).remove(console.nextInt());
+                    this.menu();
+                case 3:
+                    System.out.println("Do you want to update a car o a part?");
+                    if (Objects.equals(console.nextLine(), "car") && Objects.equals(console.nextLine(), "Car")) {
+                       /* this.inventory = new InMemoInventory();
+                        this.populateInMemory();
+                        System.out.println("Enter car ID:");
+                        int id= console.nextInt();
+                        System.out.println("Enter car brand:");
+                        String brand= console.nextLine();
+                        System.out.println("Enter car model:");
+                        String model= console.nextLine();
+                        System.out.println("Enter car price:");
+                        Double price= console.nextDouble();
+                        System.out.println("Enter car year of registration:");
+                        String yearOfReg= console.nextLine();
+                        Car car = new Car(id,brand,model,price,yearOfReg);//List<Part> parts);
+                        ((SalespersonController) this.controller).update(car);
+                        this.menu();
+                        */
+                    }
+                    if (Objects.equals(console.nextLine(), "part") && Objects.equals(console.nextLine(), "Part")) {
+                        /* this.inventory = new InMemoInventory();
+                        this.populateInMemory();
+                        System.out.println("Enter part ID:");
+                        int id= console.nextInt();
+                        System.out.println("Enter car brand:");
+                        String brand= console.nextLine();
+                        System.out.println("Enter car model:");
+                        String model= console.nextLine();
+                        System.out.println("Enter car price:");
+                        Double price= console.nextDouble();
+                        System.out.println("Enter car year of registration:");
+                        String yearOfReg= console.nextLine();
+                        Part part = new Part(id,brand,model,price);//List<Car> cars);
+                        ((SalespersonController) this.controller).update(part);
+                        this.menu();
+                        */
+                    }
+
+                case 4:
+                    ((SalespersonController) this.controller).updateViewAllCars();
+                    this.menu();
+                case 5:
+                    ((SalespersonController) this.controller).updateViewAllParts();
+                    this.menu();
+                case 6:
+                    ((SalespersonController) this.controller).updateViewSalary();
+                    this.menu();
+                case 7:
+                    System.out.println("What ID has the car?");
+                    ((SalespersonController) this.controller).updateViewPartsForACar(console.nextInt());
+                    this.menu();
+                case 8:
+                    System.out.println("What ID has the part?");
+                    ((SalespersonController) this.controller).updateViewCarsForAPart(console.nextInt());
+                    this.menu();
+                case 9:
+                    System.out.println("What is the highest price you want a car to have ?");
+                    ((SalespersonController) this.controller).updateViewFilterAllCarsByPrice(console.nextInt());
+                    this.menu();
+                case 0:
+                    exit(0);
+                default:
+                    System.out.println("Wrong input...try a value from 0 to 9");
+                    this.menu();
+
+            }
         }
     }
 
