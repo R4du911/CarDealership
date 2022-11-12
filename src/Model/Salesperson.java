@@ -25,7 +25,12 @@ public class Salesperson extends Person implements DealershipSystem {
     }
 
     @Override
-    public void add(Merchandise merch) {
+    public void add(Merchandise merch) throws IllegalArgumentException{
+        for(Merchandise product : this.inMemoInventory.getCarsAndParts()){
+            if(product.getID() == merch.getID()){
+                throw new IllegalArgumentException("Product with same ID already in warehouse");
+            }
+        }
         this.inMemoInventory.add_Merch(merch);
     }
 

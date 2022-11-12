@@ -39,9 +39,7 @@ public class CustomerController extends Controller{
         model.addOrder(date);
     }
 
-    public void addProductToList(Merchandise merch) {
-        model.addProductToList(merch);
-    }
+    public void addProductToList(int ID) {model.addProductToList(ID);}
 
     public void removeProductFromList(int ID) {
         model.removeProductFromList(ID);

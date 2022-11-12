@@ -33,6 +33,10 @@ class SalespersonTest {
         salespersonCtrl.add(part);
         assert (salespersonCtrl.getAllParts().contains(part));
 
+        Car car2 = new Car(1, "Ford", "Fiesta", 1235.0, 2005, "Diesel", parts);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> salespersonCtrl.add(car2));
+        assertEquals("Product with same ID already in warehouse", exception.getMessage());
+
         System.out.println("Add working good..");
     }
 

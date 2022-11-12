@@ -9,24 +9,45 @@ import java.util.List;
 
 public class CustomerView {
     public void printAllOrders(List<Order> allOrders) {
+        if(allOrders.isEmpty()){
+            System.out.println("There are no saved orders for this user" + "\n");
+            return;
+        }
         for (Order order : allOrders) {
             System.out.println(order.toStringOrder());
         }
+        System.out.println("\n");
     }
 
     public void printAllCars(List<Car> allCars) {
+        if(allCars.isEmpty()){
+            System.out.println("At the moment there are no more cars left in our warehouse");
+            System.out.println("We are sorry for the inconvenience" + "\n");
+            return;
+        }
         for (Car car : allCars) {
             System.out.println(car.toStringCar());
         }
+        System.out.println("\n");
     }
 
     public void printAllParts(List<Part> allParts) {
+        if(allParts.isEmpty()){
+            System.out.println("At the moment there are no more parts left in our warehouse");
+            System.out.println("We are sorry for the inconvenience" + "\n");
+            return;
+        }
         for (Part part : allParts) {
             System.out.println(part.toStringPart());
         }
+        System.out.println("\n");
     }
 
     public void printPendingOrder(List<Merchandise> buyCart) {
+        if(buyCart.isEmpty()){
+            System.out.println("Your basket is empty" + "\n");
+            return;
+        }
         for (Merchandise product : buyCart) {
             if (product instanceof Car) {
                 System.out.println(((Car) product).toStringCar());
@@ -34,11 +55,12 @@ public class CustomerView {
                 System.out.println(((Part) product).toStringPart());
             }
         }
+        System.out.println("\n");
     }
 
     public void printMoney(double money) {
-        System.out.println("Money: " + money);
+        System.out.println("Money: " + money + "\n");
     }
 
-    public void printMinCar(Car car){System.out.println(car.toStringCar());}
+    public void printMinCar(Car car){System.out.println(car.toStringCar() + "\n");}
 }

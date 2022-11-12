@@ -6,7 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="9ad63f6f-3f5b-45db-926c-5cef23154c3d" name="Changes" comment="xml changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interface/CustomerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interface/CustomerSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Salesperson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Salesperson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/CustomerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/CustomerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/SalespersonView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/SalespersonView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/CustomerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/CustomerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/SalespersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/SalespersonTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +72,7 @@
       <recent name="test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CustomerTest">
+  <component name="RunManager">
     <configuration name="CustomerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Car-Dealership" />
       <extension name="coverage">
@@ -79,6 +88,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CustomerTest.addProductToList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Car-Dealership" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.CustomerTest" />
+      <option name="METHOD_NAME" value="addProductToList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CustomerTest.getAllCarsForAPart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Car-Dealership" />
       <extension name="coverage">
@@ -90,22 +115,6 @@
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.CustomerTest" />
       <option name="METHOD_NAME" value="getAllCarsForAPart" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CustomerTest.getAllPartsForACar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Car-Dealership" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.CustomerTest" />
-      <option name="METHOD_NAME" value="getAllPartsForACar" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -156,10 +165,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.SalespersonTest" />
+        <item itemvalue="JUnit.CustomerTest.addProductToList" />
         <item itemvalue="JUnit.CustomerTest" />
         <item itemvalue="JUnit.CustomerTest.removeProductFromList" />
         <item itemvalue="JUnit.CustomerTest.getAllCarsForAPart" />
-        <item itemvalue="JUnit.CustomerTest.getAllPartsForACar" />
       </list>
     </recent_temporary>
   </component>

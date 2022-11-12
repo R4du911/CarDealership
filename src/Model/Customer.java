@@ -63,13 +63,9 @@ public class Customer extends Person implements CustomerSystem {
         }
 
         for (Merchandise merch : this.pendingOrder.getPurchased()) {
-            if (!this.inMemoInventory.getCarsAndParts().contains(merch)) {
-                throw new IllegalArgumentException("Product does not exist");
-            } else {
-                sumPrice += merch.getPrice();
-                if (sumPrice > this.getMoney()) {
-                    throw new ArithmeticException("Not enough money");
-                }
+            sumPrice += merch.getPrice();
+            if (sumPrice > this.getMoney()) {
+                throw new ArithmeticException("Not enough money");
             }
         }
 
@@ -88,8 +84,15 @@ public class Customer extends Person implements CustomerSystem {
 
     }
 
-    public void addProductToList(Merchandise merch) {
-        this.pendingOrder.addProductToList(merch);
+    public void addProductToList(int ID) throws IllegalArgumentException{
+        for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
+            if(merch.getID() == ID){
+                this.pendingOrder.addProductToList(merch);
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Product does not exist");
+
     }
 
     public void removeProductFromList(int ID) {
