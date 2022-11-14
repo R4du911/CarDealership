@@ -16,18 +16,6 @@ public class Order {
         return productList;
     }
 
-    public void setProductList(ProductList productList) {
-        this.productList = productList;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public String toStringOrder(){
         return "Date that the order was placed: " + this.date + "\n" + this.productList.toStringProductList();
     }

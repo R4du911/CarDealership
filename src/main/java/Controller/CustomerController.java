@@ -23,10 +23,6 @@ public class CustomerController extends Controller{
         return model.getMoney();
     }
 
-    public void setMoney(Double money) {
-        model.setMoney(money);
-    }
-
     public List<Car> getAllCars() {
         return model.getAllCars();
     }

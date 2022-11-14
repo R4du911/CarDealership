@@ -20,10 +20,6 @@ public class Salesperson extends Person implements DealershipSystem {
         return salary;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
     @Override
     public void add(Merchandise merch) throws IllegalArgumentException{
         for(Merchandise product : this.inMemoInventory.getCarsAndParts()){

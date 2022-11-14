@@ -23,10 +23,6 @@ public class SalespersonController extends Controller {
         return model.getSalary();
     }
 
-    public void setSalary(Double salary) {
-        model.setSalary(salary);
-    }
-
     public void add(Merchandise merch) {
         model.add(merch);
     }

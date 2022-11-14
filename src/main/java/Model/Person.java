@@ -18,31 +18,8 @@ public abstract class Person{
         return user;
     }
 
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public String getPasswd() {
         return passwd;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 }

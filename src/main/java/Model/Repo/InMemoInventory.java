@@ -16,10 +16,6 @@ public class InMemoInventory {
         this.carsAndParts = new ArrayList<>();
     }
 
-    public void setCarsAndParts(List<Merchandise> carsAndParts) {
-        this.carsAndParts = carsAndParts;
-    }
-
     public void add_Merch(Merchandise merch) {
         this.carsAndParts.add(merch);
     }

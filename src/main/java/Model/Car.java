@@ -18,16 +18,8 @@ public class Car extends Merchandise {
         return yearOfReg;
     }
 
-    public void setYearOfReg(int yearOfReg) {
-        this.yearOfReg = yearOfReg;
-    }
-
     public String getMotor() {
         return motor;
-    }
-
-    public void setMotor(String motor) {
-        this.motor = motor;
     }
 
     public List<Part> getUsableParts() {
