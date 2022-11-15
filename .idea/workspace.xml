@@ -5,32 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ad63f6f-3f5b-45db-926c-5cef23154c3d" name="Changes" comment="organised files in packages">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Car-Dealership.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Car-Dealership.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SalespersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/SalespersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interface/CustomerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/CustomerSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interface/DealershipSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/DealershipSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interface/RegisterLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/RegisterLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Merchandise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Merchandise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Part.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Part.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ProductList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ProductList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Repo/InMemoInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Repo/InMemoInventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Repo/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Repo/UserRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Salesperson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Salesperson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/CustomerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/CustomerView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/SalespersonView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/SalespersonView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/CustomerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/CustomerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/SalespersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/SalespersonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/SalespersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/SalespersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Merchandise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Merchandise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Salesperson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Salesperson.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,30 +41,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "last_opened_file_path": "C:/Users/Radu/IdeaProjects/Labor3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Radu/IdeaProjects/Labor3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;,
+      &quot;sqlserver.localdb&quot;,
+      &quot;sqlserver&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -221,7 +211,11 @@
       <workItem from="1667731158310" duration="1032000" />
       <workItem from="1667736470877" duration="4676000" />
       <workItem from="1667909825022" duration="8881000" />
-      <workItem from="1668455936587" duration="2225000" />
+      <workItem from="1668455936587" duration="2311000" />
+      <workItem from="1668499625310" duration="2868000" />
+      <workItem from="1668503175164" duration="1171000" />
+      <workItem from="1668514419059" duration="7217000" />
+      <workItem from="1668522530911" duration="720000" />
     </task>
     <task id="LOCAL-00001" summary="V1.0">
       <created>1666884622186</created>

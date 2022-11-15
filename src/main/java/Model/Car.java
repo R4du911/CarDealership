@@ -3,8 +3,8 @@ package Model;
 import java.util.List;
 
 public class Car extends Merchandise {
-    private int yearOfReg;
-    private String motor;
+    private final int yearOfReg;
+    private final String motor;
     private List<Part> usableParts;
 
     public Car(int ID,String brand, String model, Double price, int yearOfReg, String motor, List<Part> usableParts) {

@@ -25,9 +25,7 @@ public class Customer extends Person implements CustomerSystem {
         return orders;
     }
 
-    public Double getMoney() {
-        return money;
-    }
+    public Double getMoney() {return money;}
 
     public void setMoney(Double money) {
         this.money = money;

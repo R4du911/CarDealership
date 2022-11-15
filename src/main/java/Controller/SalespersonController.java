@@ -50,33 +50,27 @@ public class SalespersonController extends Controller {
     }
 
     public void updateViewAllCars(){
-        List<Car> allCars = this.getAllCars();
-        this.view.printAllCars(allCars);
+        this.view.printAllCars(this.getAllCars());
     }
 
     public void updateViewAllParts(){
-        List<Part> allParts = this.getAllParts();
-        this.view.printAllParts(allParts);
+        this.view.printAllParts(this.getAllParts());
     }
 
     public void updateViewSalary(){
-        double salary = this.getSalary();
-        this.view.printSalary(salary);
+        this.view.printSalary(this.getSalary());
     }
 
     public void updateViewPartsForACar(int ID){
-        List<Part> parts = this.getAllPartsForACar(ID);
-        this.view.printAllParts(parts);
+        this.view.printAllParts(this.getAllPartsForACar(ID));
     }
 
     public void updateViewCarsForAPart(int ID){
-        List<Car> cars = this.getAllCarsForAPart(ID);
-        this.view.printAllCars(cars);
+        this.view.printAllCars(this.getAllCarsForAPart(ID));
     }
 
     public void updateViewFilterAllCarsByPrice(int price){
-        List<Car> cars = this.filterAllCarsByPrice(price);
-        this.view.printAllCars(cars);
+        this.view.printAllCars(this.filterAllCarsByPrice(price));
     }
 
 }

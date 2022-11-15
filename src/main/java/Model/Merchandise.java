@@ -1,10 +1,10 @@
 package Model;
 
 public abstract class Merchandise {
-    private String brand;
-    private String model;
+    private final String brand;
+    private final String model;
     private Double price;
-    private int ID;
+    private final int ID;
 
     public Merchandise(String brand, String model, Double price, int ID) {
         this.brand = brand;
@@ -21,10 +21,6 @@ public abstract class Merchandise {
         return model;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
     public Double getPrice() {
         return price;
     }
@@ -35,10 +31,6 @@ public abstract class Merchandise {
 
     public int getID() {
         return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 }
 

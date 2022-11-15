@@ -7,7 +7,7 @@ import Model.Repo.*;
 import Interface.*;
 
 public class Salesperson extends Person implements DealershipSystem {
-    private double salary;
+    private final double salary;
     final private InMemoInventory inMemoInventory;
 
     public Salesperson(String user, String passwd, String firstName, String lastName, double salary, InMemoInventory inventory) {

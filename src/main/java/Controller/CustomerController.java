@@ -68,42 +68,34 @@ public class CustomerController extends Controller{
     }
 
     public void updateViewAllOrders() {
-        List<Order> allOrders = this.getOrders();
-        this.view.printAllOrders(allOrders);
+        this.view.printAllOrders(this.getOrders());
     }
 
     public void updateViewAllCars() {
-        List<Car> allCars = this.getAllCars();
-        this.view.printAllCars(allCars);
+        this.view.printAllCars(this.getAllCars());
     }
 
     public void updateViewAllParts() {
-        List<Part> allParts = this.getAllParts();
-        this.view.printAllParts(allParts);
+        this.view.printAllParts(this.getAllParts());
     }
 
     public void updateViewPendingOrder() {
-        List<Merchandise> buyCart = this.viewPendingOrder();
-        this.view.printPendingOrder(buyCart);
+        this.view.printPendingOrder(this.viewPendingOrder());
     }
 
     public void updateViewMoney() {
-        double money = this.getMoney();
-        this.view.printMoney(money);
+        this.view.printMoney(this.getMoney());
     }
 
     public void updateViewPartsForACar(int ID) {
-        List<Part> parts = this.getAllPartsForACar(ID);
-        this.view.printAllParts(parts);
+        this.view.printAllParts(this.getAllPartsForACar(ID));
     }
 
     public void updateViewCarsForAPart(int ID) {
-        List<Car> cars = this.getAllCarsForAPart(ID);
-        this.view.printAllCars(cars);
+        this.view.printAllCars(this.getAllCarsForAPart(ID));
     }
 
     public void updateViewMinCar(){
-        Car car = this.findMin();
-        this.view.printMinCar(car);
+        this.view.printMinCar(this.findMin());
     }
 }
