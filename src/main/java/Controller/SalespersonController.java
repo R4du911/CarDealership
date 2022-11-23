@@ -24,20 +24,50 @@ public class SalespersonController extends Controller {
     }
 
     public void add(Merchandise merch) {
-        model.add(merch);
+        try {
+            model.add(merch);
+        }catch(Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
-    public void remove(int ID) {model.remove(ID);}
+    public void remove(int ID) {
+        try{
+            model.remove(ID);
+        }catch(Exception error) {
+            System.out.println(error.getMessage());
+        }
+    }
 
-    public void update(Merchandise merch){model.update(merch);}
+    public void update(Merchandise merch){
+        try {
+            model.update(merch);
+        }catch(Exception error){
+            System.out.println(error.getMessage());
+        }
+    }
 
     public List<Car> getAllCars(){return model.getAllCars();}
 
     public List<Part> getAllParts(){return model.getAllParts();}
 
-    public List<Part> getAllPartsForACar(int ID){return model.getAllPartsForACar(ID);}
+    public List<Part> getAllPartsForACar(int ID){
+        try{
+            return model.getAllPartsForACar(ID);
+        }catch(Exception error){
+            System.out.println(error.getMessage());
+            return new ArrayList<>();
+        }
+    }
 
-    public List<Car> getAllCarsForAPart(int ID){return model.getAllCarsForAPart(ID);}
+    public List<Car> getAllCarsForAPart(int ID){
+        try {
+            return model.getAllCarsForAPart(ID);
+        }catch(Exception error){
+            System.out.println(error.getMessage());
+            return new ArrayList<>();
+        }
+    }
 
     public List<Car> filterAllCarsByPrice(int price){
         List<Car> allCars = new ArrayList<>();

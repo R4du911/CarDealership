@@ -8,7 +8,8 @@ public class SalespersonView {
 
     public void printAllCars(List<Car> allCars) {
         if(allCars.isEmpty()){
-            System.out.println("The cars warehouse is empty!" + "\n");
+            System.out.print("No cars found!" + "\n");
+            System.out.println("We are sorry for the inconvenience" + "\n");
             return;
         }
         for (Car car : allCars) {
@@ -19,7 +20,8 @@ public class SalespersonView {
 
     public void printAllParts(List<Part> allParts) {
         if(allParts.isEmpty()){
-            System.out.println("The parts warehouse is empty!" + "\n");
+            System.out.print("No parts found!" + "\n");
+            System.out.println("We are sorry for the inconvenience" + "\n");
             return;
         }
         for (Part part : allParts) {

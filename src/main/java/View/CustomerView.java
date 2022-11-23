@@ -10,7 +10,7 @@ import java.util.List;
 public class CustomerView {
     public void printAllOrders(List<Order> allOrders) {
         if(allOrders.isEmpty()){
-            System.out.println("There are no saved orders for this user" + "\n");
+            System.out.println("No orders found!" + "\n");
             return;
         }
         for (Order order : allOrders) {
@@ -21,7 +21,7 @@ public class CustomerView {
 
     public void printAllCars(List<Car> allCars) {
         if(allCars.isEmpty()){
-            System.out.println("At the moment there are no more cars left in our warehouse");
+            System.out.print("No cars found!");
             System.out.println("We are sorry for the inconvenience" + "\n");
             return;
         }
@@ -33,7 +33,7 @@ public class CustomerView {
 
     public void printAllParts(List<Part> allParts) {
         if(allParts.isEmpty()){
-            System.out.println("At the moment there are no more parts left in our warehouse");
+            System.out.print("No parts found!");
             System.out.println("We are sorry for the inconvenience" + "\n");
             return;
         }
@@ -62,5 +62,5 @@ public class CustomerView {
         System.out.println("Money: " + money + "\n");
     }
 
-    public void printMinCar(Car car){System.out.println(car.toStringCar() + "\n");}
+    public void printMinCar(Car car){System.out.println("Cheapest car: " + car.toStringCar() + "\n");}
 }

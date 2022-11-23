@@ -1,6 +1,7 @@
-package test;
+package Test;
 
 import Controller.SalespersonController;
+import Errors.CustomIllegalArgument;
 import Model.Car;
 import Model.Part;
 import Model.Repo.InMemoInventory;
@@ -34,7 +35,7 @@ class SalespersonTest {
         assert (salespersonCtrl.getAllParts().contains(part));
 
         Car car2 = new Car(1, "Ford", "Fiesta", 1235.0, 2005, "Diesel", parts);
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> salespersonCtrl.add(car2));
+        CustomIllegalArgument exception = assertThrows(CustomIllegalArgument.class, () -> salesperson.add(car2));
         assertEquals("Product with same ID already in warehouse", exception.getMessage());
 
         System.out.println("Add working good..");
@@ -52,7 +53,7 @@ class SalespersonTest {
         salespersonCtrl.remove(4);
         assert (!salespersonCtrl.getAllParts().contains(part));
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> salespersonCtrl.remove(20));
+        CustomIllegalArgument exception = assertThrows(CustomIllegalArgument.class, () -> salesperson.remove(20));
         assertEquals("Product does not exist", exception.getMessage());
 
         System.out.println("Remove working good..");
@@ -71,6 +72,10 @@ class SalespersonTest {
         Part part2 = new Part(6, "Toyota", "XCH-I", 35.5, cars);
         salespersonCtrl.update(part2);
         assert (salespersonCtrl.getAllParts().get(0).getPrice() == 35.5);
+
+        Car toUpdate = new Car(10, "Ford", "Fiesta", 1425.0, 2005, "Diesel", parts);
+        CustomIllegalArgument exception = assertThrows(CustomIllegalArgument.class, () -> salesperson.update(toUpdate));
+        assertEquals("Product does not exist", exception.getMessage());
 
         System.out.println("Update working good..");
     }
@@ -130,7 +135,7 @@ class SalespersonTest {
         assert (returnedPartsForCar.contains(part1));
         assert (returnedPartsForCar.contains(part2));
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> salespersonCtrl.getAllPartsForACar(11));
+        CustomIllegalArgument exception = assertThrows(CustomIllegalArgument.class, () -> salesperson.getAllPartsForACar(11));
         assertEquals("Car does not exist", exception.getMessage());
 
         System.out.println("Display parts for a given car works good..");
@@ -153,7 +158,7 @@ class SalespersonTest {
         assert (returnedCarsForPart.contains(car1));
         assert (returnedCarsForPart.contains(car2));
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> salespersonCtrl.getAllCarsForAPart(11));
+        CustomIllegalArgument exception = assertThrows(CustomIllegalArgument.class, () -> salesperson.getAllCarsForAPart(11));
         assertEquals("Part does not exist", exception.getMessage());
 
         System.out.println("Display cars for a given part works good..");

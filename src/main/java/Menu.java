@@ -128,7 +128,6 @@ public class Menu implements RegisterLogin {
     }
 
     public void menu() {
-
         if (controller instanceof CustomerController) {
 
             //menu for Customer...
@@ -214,7 +213,7 @@ public class Menu implements RegisterLogin {
             System.out.println("[7]-Show all usable parts for a car");//updateViewPartsForACar
             System.out.println("[8]-Show all cars that match a part");//updateViewCarsForAPart
             System.out.println("[9]-Show cheaper cars than given price");//updateViewFilterAllCarsByPrice
-            System.out.println("<<Press 0 key for log out>>");//updateViewFilterAllCarsByPrice
+            System.out.println("<<Press 0 key for log out>>");
             System.out.println("\n");
 
             System.out.println("Choose an option");

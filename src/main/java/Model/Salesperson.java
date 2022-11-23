@@ -3,6 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import Errors.CustomIllegalArgument;
 import Model.Repo.*;
 import Interface.*;
 
@@ -21,28 +22,43 @@ public class Salesperson extends Person implements DealershipSystem {
     }
 
     @Override
-    public void add(Merchandise merch) throws IllegalArgumentException{
+    public void add(Merchandise merch) throws CustomIllegalArgument{
         for(Merchandise product : this.inMemoInventory.getCarsAndParts()){
             if(product.getID() == merch.getID()){
-                throw new IllegalArgumentException("Product with same ID already in warehouse");
+                throw new CustomIllegalArgument("Product with same ID already in warehouse");
             }
         }
         this.inMemoInventory.add_Merch(merch);
     }
 
     @Override
-    public void remove(int ID) {
-        this.inMemoInventory.remove_Merch(ID);
+    public void remove(int ID) throws CustomIllegalArgument{
+        boolean found = false;
+        for(Merchandise product : this.inMemoInventory.getCarsAndParts()) {
+            if (product.getID() == ID) {
+                found = true;
+                this.inMemoInventory.remove_Merch(ID);
+                break;
+            }
+        }
+        if(!found){
+            throw new CustomIllegalArgument("Product does not exist");
+        }
     }
 
     @Override
-    public void update(Merchandise merch) {
+    public void update(Merchandise merch) throws CustomIllegalArgument{
+        boolean found = false;
         for (Merchandise product : this.inMemoInventory.getCarsAndParts()) {
             if (product.getID() == merch.getID()) {
+                found = true;
                 this.inMemoInventory.remove_Merch(product.getID());
                 this.inMemoInventory.add_Merch(merch);
                 break;
             }
+        }
+        if(!found){
+            throw new CustomIllegalArgument("Product does not exist");
         }
     }
 
@@ -69,24 +85,24 @@ public class Salesperson extends Person implements DealershipSystem {
         return parts;
     }
 
-    public List<Part> getAllPartsForACar(int ID) throws IllegalArgumentException {
+    public List<Part> getAllPartsForACar(int ID) throws CustomIllegalArgument {
         for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
             if (merch.getID() == ID && merch instanceof Car) {
                 Car car = (Car) merch;
                 return car.getUsableParts();
             }
         }
-        throw new IllegalArgumentException("Car does not exist");
+        throw new CustomIllegalArgument("Car does not exist");
     }
 
-    public List<Car> getAllCarsForAPart(int ID) throws IllegalArgumentException {
+    public List<Car> getAllCarsForAPart(int ID) throws CustomIllegalArgument {
         for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
             if (merch.getID() == ID && merch instanceof Part) {
                 Part part = (Part) merch;
                 return part.getForCars();
             }
         }
-        throw new IllegalArgumentException("Part does not exist");
+        throw new CustomIllegalArgument("Part does not exist");
     }
 }
 

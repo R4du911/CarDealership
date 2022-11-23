@@ -1,6 +1,7 @@
-package test;
+package Test;
 
 import Controller.CustomerController;
+import Errors.CustomIllegalArgument;
 import Model.*;
 import Model.Repo.InMemoInventory;
 import View.CustomerView;
@@ -31,7 +32,7 @@ class CustomerTest {
         customerCtrl.addProductToList(3);
         assert (customerCtrl.viewPendingOrder().contains(part1));
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> customerCtrl.addProductToList(20));
+        CustomIllegalArgument exception = assertThrows(CustomIllegalArgument.class, () -> customer.addProductToList(20));
         assertEquals("Product does not exist", exception.getMessage());
 
         System.out.println("Add product works good..");
@@ -51,8 +52,8 @@ class CustomerTest {
         customerCtrl.removeProductFromList(4);
         assert (!customerCtrl.viewPendingOrder().contains(part));
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> customerCtrl.removeProductFromList(20));
-        assertEquals("Product does not exist", exception.getMessage());
+        CustomIllegalArgument exception = assertThrows(CustomIllegalArgument.class, () -> customer.removeProductFromList(20));
+        assertEquals("Product does not exist in pendingOrder", exception.getMessage());
 
         System.out.println("Remove product works good..");
     }
@@ -101,17 +102,17 @@ class CustomerTest {
 
         System.out.println("Add order works good...");
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> customerCtrl.addOrder(date));
+        CustomIllegalArgument exception = assertThrows(CustomIllegalArgument.class, () -> customer.addOrder(date));
         assertEquals("ProductList is empty", exception.getMessage());
 
         Car car3 = new Car(4, "Volvo", "xc60", 15500.0, 2014, "Gasoline", parts);
         inventory.add_Merch(car1);
         inventory.add_Merch(car3);
         customerCtrl.addProductToList(4);
-        ArithmeticException exception2 = assertThrows(ArithmeticException.class, () -> customerCtrl.addOrder(date));
+        CustomIllegalArgument exception2 = assertThrows(CustomIllegalArgument.class, () -> customer.addOrder(date));
         assertEquals("Not enough money", exception2.getMessage());
 
-        System.out.println("Add exceptions work good...");
+        System.out.println("Add order exceptions work good...");
 
     }
 
@@ -132,7 +133,7 @@ class CustomerTest {
         assert (returnedPartsForACar.contains(part1));
         assert (returnedPartsForACar.contains(part2));
 
-        IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class, () -> customerCtrl.getAllPartsForACar(11));
+        CustomIllegalArgument exception1 = assertThrows(CustomIllegalArgument.class, () -> customer.getAllPartsForACar(11));
         assertEquals("Car does not exist", exception1.getMessage());
 
         System.out.println("Display parts for a given car works good...");
@@ -156,7 +157,7 @@ class CustomerTest {
         assert (returnedCarsForAPart.contains(car1));
         assert (returnedCarsForAPart.contains(car2));
 
-        IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class, () -> customerCtrl.getAllCarsForAPart(69));
+        CustomIllegalArgument exception1 = assertThrows(CustomIllegalArgument.class, () -> customer.getAllCarsForAPart(69));
         assertEquals("Part does not exist", exception1.getMessage());
 
         System.out.println("Display cars for a given part works good...");

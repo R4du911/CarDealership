@@ -3,6 +3,7 @@ package Controller;
 import Model.*;
 import View.CustomerView;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,13 +33,27 @@ public class CustomerController extends Controller{
     }
 
     public void addOrder(Date date) {
-        model.addOrder(date);
+        try {
+            model.addOrder(date);
+        }catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
     }
 
-    public void addProductToList(int ID) {model.addProductToList(ID);}
+    public void addProductToList(int ID) {
+        try {
+            model.addProductToList(ID);
+        }catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
+    }
 
     public void removeProductFromList(int ID) {
-        model.removeProductFromList(ID);
+        try {
+            model.removeProductFromList(ID);
+        }catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
     }
 
     public List<Merchandise> viewPendingOrder() {
@@ -46,11 +61,21 @@ public class CustomerController extends Controller{
     }
 
     public List<Part> getAllPartsForACar(int ID) {
-        return model.getAllPartsForACar(ID);
+        try {
+            return model.getAllPartsForACar(ID);
+        }catch (Exception error) {
+            System.out.println(error.getMessage());
+            return new ArrayList<>();
+        }
     }
 
     public List<Car> getAllCarsForAPart(int ID) {
-        return model.getAllCarsForAPart(ID);
+        try {
+            return model.getAllCarsForAPart(ID);
+        }catch (Exception error) {
+            System.out.println(error.getMessage());
+            return new ArrayList<>();
+        }
     }
 
     public Car findMin(){

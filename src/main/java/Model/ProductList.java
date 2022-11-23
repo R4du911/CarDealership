@@ -21,15 +21,13 @@ public class ProductList {
 
     public void addProductToList(Merchandise merch){this.purchased.add(merch);}
 
-    public void removeProductFromList(int ID) throws IllegalArgumentException{
+    public void removeProductFromList(int ID){
         for (Merchandise merch : this.getPurchased()) {
             if (merch.getID() == ID) {
                 this.purchased.remove(merch);
                 return;
             }
         }
-
-        throw new IllegalArgumentException("Product does not exist");
     }
 
     public String toStringProductList(){

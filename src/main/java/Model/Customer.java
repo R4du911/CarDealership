@@ -1,5 +1,6 @@
 package Model;
 
+import Errors.CustomIllegalArgument;
 import Interface.CustomerSystem;
 import Model.Repo.*;
 
@@ -53,17 +54,17 @@ public class Customer extends Person implements CustomerSystem {
         return parts;
     }
 
-    public void addOrder(Date date) throws IllegalArgumentException, ArithmeticException {
+    public void addOrder(Date date) throws CustomIllegalArgument {
         Double sumPrice = 0.0;
 
         if (this.pendingOrder.getPurchased().isEmpty()) {
-            throw new IllegalArgumentException("ProductList is empty");
+            throw new CustomIllegalArgument("ProductList is empty");
         }
 
         for (Merchandise merch : this.pendingOrder.getPurchased()) {
             sumPrice += merch.getPrice();
             if (sumPrice > this.getMoney()) {
-                throw new ArithmeticException("Not enough money");
+                throw new CustomIllegalArgument("Not enough money");
             }
         }
 
@@ -82,42 +83,52 @@ public class Customer extends Person implements CustomerSystem {
 
     }
 
-    public void addProductToList(int ID) throws IllegalArgumentException{
+    public void addProductToList(int ID) throws CustomIllegalArgument{
         for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
             if(merch.getID() == ID){
                 this.pendingOrder.addProductToList(merch);
                 return;
             }
         }
-        throw new IllegalArgumentException("Product does not exist");
+        throw new CustomIllegalArgument("Product does not exist");
 
     }
 
-    public void removeProductFromList(int ID) {
-        this.pendingOrder.removeProductFromList(ID);
+    public void removeProductFromList(int ID) throws CustomIllegalArgument{
+        boolean found = false;
+        for(Merchandise product : this.pendingOrder.getPurchased()) {
+            if (product.getID() == ID) {
+                found = true;
+                this.pendingOrder.removeProductFromList(ID);
+                break;
+            }
+        }
+        if(!found){
+            throw new CustomIllegalArgument("Product does not exist in pendingOrder");
+        }
     }
 
     public List<Merchandise> viewPendingOrder() {
         return this.pendingOrder.getPurchased();
     }
 
-    public List<Part> getAllPartsForACar(int ID) throws IllegalArgumentException {
+    public List<Part> getAllPartsForACar(int ID) throws CustomIllegalArgument {
         for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
             if (merch.getID() == ID && merch instanceof Car) {
                 Car car = (Car) merch;
                 return car.getUsableParts();
             }
         }
-        throw new IllegalArgumentException("Car does not exist");
+        throw new CustomIllegalArgument("Car does not exist");
     }
 
-    public List<Car> getAllCarsForAPart(int ID) throws IllegalArgumentException {
+    public List<Car> getAllCarsForAPart(int ID) throws CustomIllegalArgument {
         for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
             if (merch.getID() == ID && merch instanceof Part) {
                 Part part = (Part) merch;
                 return part.getForCars();
             }
         }
-        throw new IllegalArgumentException("Part does not exist");
+        throw new CustomIllegalArgument("Part does not exist");
     }
 }

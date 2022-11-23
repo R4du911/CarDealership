@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoInventory {
-    private List<Merchandise> carsAndParts;
+    private final List<Merchandise> carsAndParts;
 
     public List<Merchandise> getCarsAndParts() {
         return carsAndParts;
@@ -20,14 +20,12 @@ public class InMemoInventory {
         this.carsAndParts.add(merch);
     }
 
-    public void remove_Merch(int ID) throws IllegalArgumentException {
+    public void remove_Merch(int ID){
         for (Merchandise merch : this.getCarsAndParts()) {
             if (merch.getID() == ID) {
                 this.carsAndParts.remove(merch);
                 return;
             }
         }
-
-        throw new IllegalArgumentException("Product does not exist");
     }
 }
