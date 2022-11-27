@@ -6,12 +6,13 @@ import Model.Repo.UserRepo;
 import View.CustomerView;
 import View.SalespersonView;
 
+import java.sql.*;
 import java.util.*;
+import java.util.Date;
 
 import static java.lang.System.exit;
 
 public class Menu implements RegisterLogin {
-
     private Controller controller;
     private InMemoInventory inventory;
     private final UserRepo userRepo = new UserRepo();
@@ -118,7 +119,7 @@ public class Menu implements RegisterLogin {
 
         if (type.equals("Salesperson") || type.equals("salesperson")) {
             this.inventory = new InMemoInventory();
-            this.populateInMemory();
+            this.populateInventoryFromDatabase();
             Salesperson salesperson = new Salesperson(user, passwd, firstName, lastName, 1300.0, inventory);
             userRepo.addUser(salesperson);
             SalespersonView view = new SalespersonView();
@@ -489,5 +490,65 @@ public class Menu implements RegisterLogin {
         this.inventory.add_Merch(car3);
         this.inventory.add_Merch(part2);
 
+    }
+
+    public void populateInventoryFromDatabase(){
+        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "radu";
+        String password = "1234";
+        ResultSet resultSet;
+
+        try(Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement();){
+            String sql = "SELECT * FROM Cars INNER JOIN Inventory ON Cars.ID = Inventory.ID";
+            resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                this.inventory.add_Merch(new Car(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getDouble(4), resultSet.getInt(5), resultSet.getString(6), new ArrayList<>()));
+            }
+
+            String sql2 = "SELECT * FROM Parts INNER JOIN Inventory ON Parts.ID = Inventory.ID";
+            resultSet = statement.executeQuery(sql2);
+            while(resultSet.next()){
+                this.inventory.add_Merch(new Part(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getDouble(4), new ArrayList<>()));
+            }
+
+            for(Merchandise merch : this.inventory.getCarsAndParts()) {
+                if(merch instanceof Car){
+                    List<Part> parts = new ArrayList<>();
+                    String sqlParts = "SELECT PartID FROM CarPartDependency WHERE CarID = " + merch.getID();
+                    resultSet = statement.executeQuery(sqlParts);
+
+                    while (resultSet.next()){
+                        for(Merchandise prod : this.inventory.getCarsAndParts()){
+                            if(prod.getID() == resultSet.getInt(1)) {
+                                parts.add((Part) prod);
+                                break;
+                            }
+                        }
+                    }
+                    ((Car) merch).setUsableParts(parts);
+                }
+
+                if(merch instanceof Part){
+                    List<Car> cars = new ArrayList<>();
+                    String sqlCars = "SELECT CarID FROM CarPartDependency WHERE PartID = " + merch.getID();
+                    resultSet = statement.executeQuery(sqlCars);
+
+                    while (resultSet.next()){
+                        for(Merchandise prod : this.inventory.getCarsAndParts()){
+                            if(prod.getID() == resultSet.getInt(1)) {
+                                cars.add((Car) prod);
+                                break;
+                            }
+                        }
+                    }
+                    ((Part) merch).setForCars(cars);
+                }
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
