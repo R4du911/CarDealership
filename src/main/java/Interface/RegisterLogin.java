@@ -1,6 +1,6 @@
 package Interface;
 
 public interface RegisterLogin {
-    void login();
-    void register();
+    void login(int savingOption);
+    void register(int savingOption);
 }

@@ -12,7 +12,7 @@ public class Customer extends Person implements CustomerSystem {
     private final List<Order> orders;
     private Double money;
     private final ProductList pendingOrder;
-    private final Inventory inMemoInventory;
+    private Inventory inMemoInventory;
 
     public Customer(String user, String passwd, String firstName, String lastName, Double money, Inventory inventory) {
         super(user, passwd, firstName, lastName);
@@ -20,6 +20,10 @@ public class Customer extends Person implements CustomerSystem {
         this.money = money;
         this.inMemoInventory = inventory;
         this.pendingOrder = new ProductList();
+    }
+
+    public void setInventory(Inventory inv){
+        this.inMemoInventory = inv;
     }
 
     public List<Order> getOrders() {

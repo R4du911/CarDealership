@@ -18,7 +18,7 @@ public class Menu implements RegisterLogin {
     private final UserRepo userRepo = new UserRepo();
 
     @Override
-    public void login() throws IllegalArgumentException {
+    public void login(int savingOption) throws IllegalArgumentException {
         this.populateUserRepo();
 
         Scanner console = new Scanner(System.in);
@@ -33,7 +33,7 @@ public class Menu implements RegisterLogin {
             String answer = console.nextLine();
 
             if (answer.equals("ja") || answer.equals("Ja")) {
-                this.register();
+                this.register(savingOption);
             }
         }
 
@@ -49,15 +49,27 @@ public class Menu implements RegisterLogin {
                 if (userSaved instanceof Customer) {
                     this.inventory = new Inventory();
                     CustomerView view = new CustomerView();
+                    ((Customer) userSaved).setInventory(this.inventory);
                     this.controller = new CustomerController((Customer) userSaved, view);
-                    this.populateInMemory();
-                    this.menu();
+
+                    if(savingOption == 1)
+                        this.populateInMemory();
+                    if(savingOption == 2)
+                        this.populateInventoryFromDatabase();
+
+                    this.menu(savingOption);
                 } else {
                     this.inventory = new Inventory();
                     SalespersonView view = new SalespersonView();
+                    ((Salesperson) userSaved).setInventory(this.inventory);
                     this.controller = new SalespersonController((Salesperson) userSaved, view);
-                    this.populateInMemory();
-                    this.menu();
+
+                    if(savingOption == 1)
+                        this.populateInMemory();
+                    if(savingOption == 2)
+                        this.populateInventoryFromDatabase();
+
+                    this.menu(savingOption);
                 }
             }
         }
@@ -67,14 +79,14 @@ public class Menu implements RegisterLogin {
             String answer = console.nextLine();
 
             if (answer.equals("ja") || answer.equals("Ja")) {
-                this.register();
+                this.register(savingOption);
             }
         }
 
     }
 
     @Override
-    public void register() throws IllegalArgumentException {
+    public void register(int savingOption) throws IllegalArgumentException {
         this.populateUserRepo();
 
         Scanner console = new Scanner(System.in);
@@ -113,7 +125,11 @@ public class Menu implements RegisterLogin {
 
         if (type.equals("Customer") || type.equals("customer")) {
             this.inventory = new Inventory();
-            this.populateInMemory();
+
+            if(savingOption == 1)
+                this.populateInMemory();
+            if(savingOption == 2)
+                this.populateInventoryFromDatabase();
 
             Customer customer = new Customer(user, passwd, firstName, lastName, 25000.0, inventory);
             userRepo.addUser(customer);
@@ -121,12 +137,16 @@ public class Menu implements RegisterLogin {
 
             CustomerView view = new CustomerView();
             this.controller = new CustomerController(customer, view);
-            this.menu();
+            this.menu(savingOption);
         }
 
         if (type.equals("Salesperson") || type.equals("salesperson")) {
             this.inventory = new Inventory();
-            this.populateInMemory();
+
+            if(savingOption == 1)
+                this.populateInMemory();
+            if(savingOption == 2)
+                this.populateInventoryFromDatabase();
 
             Salesperson salesperson = new Salesperson(user, passwd, firstName, lastName, 1300.0, inventory);
             userRepo.addUser(salesperson);
@@ -134,11 +154,11 @@ public class Menu implements RegisterLogin {
 
             SalespersonView view = new SalespersonView();
             this.controller = new SalespersonController(salesperson, view);
-            this.menu();
+            this.menu(savingOption);
         }
     }
 
-    public void menu() {
+    public void menu(int savingOption) {
         if (controller instanceof CustomerController) {
 
             //menu for Customer...
@@ -166,47 +186,56 @@ public class Menu implements RegisterLogin {
             switch (option) {
                 case 1:
                     System.out.println("What ID has the product you want to add?");
-                    ((CustomerController) this.controller).addProductToList(console.nextInt());
-                    this.menu();
+                    if(savingOption == 1)
+                        ((CustomerController) this.controller).addProductToList(console.nextInt());
+                    if(savingOption == 2)
+                        //code for database saving
+                    this.menu(savingOption);
                 case 2:
                     System.out.println("What ID has the product you want to remove?");
-                    ((CustomerController) this.controller).removeProductFromList(console.nextInt());
-                    this.menu();
+                    if(savingOption == 1)
+                        ((CustomerController) this.controller).removeProductFromList(console.nextInt());
+                    if(savingOption == 2)
+                        //code for database saving
+                    this.menu(savingOption);
                 case 3:
                     Date date = new Date();
-                    ((CustomerController) this.controller).addOrder(date);
-                    this.menu();
+                    if(savingOption == 1)
+                        ((CustomerController) this.controller).addOrder(date);
+                    if(savingOption == 2)
+                        //code for database saving
+                    this.menu(savingOption);
                 case 4:
                     ((CustomerController) this.controller).updateViewPendingOrder();
-                    this.menu();
+                    this.menu(savingOption);
                 case 5:
                     ((CustomerController) this.controller).updateViewAllCars();
-                    this.menu();
+                    this.menu(savingOption);
                 case 6:
                     ((CustomerController) this.controller).updateViewAllParts();
-                    this.menu();
+                    this.menu(savingOption);
                 case 7:
                     ((CustomerController) this.controller).updateViewMoney();
-                    this.menu();
+                    this.menu(savingOption);
                 case 8:
                     ((CustomerController) this.controller).updateViewMinCar();
-                    this.menu();
+                    this.menu(savingOption);
                 case 9:
                     ((CustomerController) this.controller).updateViewAllOrders();
-                    this.menu();
+                    this.menu(savingOption);
                 case 10:
                     System.out.println("What ID has the car?");
                     ((CustomerController) this.controller).updateViewPartsForACar(console.nextInt());
-                    this.menu();
+                    this.menu(savingOption);
                 case 11:
                     System.out.println("What ID has the part?");
                     ((CustomerController) this.controller).updateViewCarsForAPart(console.nextInt());
-                    this.menu();
+                    this.menu(savingOption);
                 case 0:
                     exit(0);
                 default:
                     System.out.println("Wrong input...try a value from 0 to 11");
-                    this.menu();
+                    this.menu(savingOption);
             }
 
 
@@ -235,234 +264,243 @@ public class Menu implements RegisterLogin {
             switch (option) {
                 case 1:
                     console.nextLine();
-                    System.out.println("Do you want to add a car or a part to inventory?");
-                    String type = console.nextLine();
+                    if(savingOption == 1) {
+                        System.out.println("Do you want to add a car or a part to inventory?");
+                        String type = console.nextLine();
 
-                    if (type.equals("Car") || type.equals("car")) {
-                        System.out.println("Enter car ID:");
-                        int id = console.nextInt();
-                        console.nextLine();
-                        System.out.println("Enter car brand:");
-                        String brand = console.nextLine();
-                        System.out.println("Enter car model:");
-                        String model = console.nextLine();
-                        System.out.println("Enter car price:");
-                        Double price = console.nextDouble();
-                        System.out.println("Enter car year of registration:");
-                        int yearOfReg = console.nextInt();
-                        console.nextLine();
-                        System.out.println("Enter fuel type:");
-                        String motor = console.nextLine();
+                        if (type.equals("Car") || type.equals("car")) {
+                            System.out.println("Enter car ID:");
+                            int id = console.nextInt();
+                            console.nextLine();
+                            System.out.println("Enter car brand:");
+                            String brand = console.nextLine();
+                            System.out.println("Enter car model:");
+                            String model = console.nextLine();
+                            System.out.println("Enter car price:");
+                            Double price = console.nextDouble();
+                            System.out.println("Enter car year of registration:");
+                            int yearOfReg = console.nextInt();
+                            console.nextLine();
+                            System.out.println("Enter fuel type:");
+                            String motor = console.nextLine();
 
-                        System.out.println("\n");
-                        List<Part> parts = new ArrayList<>();
-                        List<Part> allParts = ((SalespersonController) this.controller).getAllParts();
-                        System.out.println("Choose from the following parts the ones that can be used on this vehicle:");
-                        System.out.println("Type 0 when you finished adding all the parts");
-                        ((SalespersonController) this.controller).updateViewAllParts();
-                        option = console.nextInt();
-
-                        while (option != 0) {
-                            boolean found = false;
-                            for (Part part : allParts) {
-                                if (part.getID() == option) {
-                                    found = true;
-                                    if(!parts.contains(part))
-                                        parts.add(part);
-                                    else{
-                                        System.out.println("Part is already selected");
-                                    }
-                                    break;
-                                }
-                            }
-                            if(!found) {
-                                System.out.println("Part not found in warehouse");
-                            }
+                            System.out.println("\n");
+                            List<Part> parts = new ArrayList<>();
+                            List<Part> allParts = ((SalespersonController) this.controller).getAllParts();
+                            System.out.println("Choose from the following parts the ones that can be used on this vehicle:");
+                            System.out.println("Type 0 when you finished adding all the parts");
+                            ((SalespersonController) this.controller).updateViewAllParts();
                             option = console.nextInt();
-                        }
 
-                        Car car = new Car(id, brand, model, price, yearOfReg, motor, parts);
-                        ((SalespersonController) this.controller).add(car);
-
-                        for (Part part : car.getUsableParts()) {
-                            List<Car> carsForPart = part.getForCars();
-                            carsForPart.add(car);
-                            part.setForCars(carsForPart);
-                        }
-                    } else if (type.equals("Part") || type.equals("part")) {
-                        System.out.println("Enter part ID:");
-                        int id = console.nextInt();
-                        console.nextLine();
-                        System.out.println("Enter part brand:");
-                        String brand = console.nextLine();
-                        System.out.println("Enter part model:");
-                        String model = console.nextLine();
-                        System.out.println("Enter part price:");
-                        Double price = console.nextDouble();
-
-                        System.out.println("\n");
-                        List<Car> cars = new ArrayList<>();
-                        List<Car> allCars = ((SalespersonController) this.controller).getAllCars();
-                        System.out.println("Choose from the following cars the ones that can be used on this part:");
-                        System.out.println("Type 0 when you finished adding all the cars");
-                        ((SalespersonController) this.controller).updateViewAllCars();
-                        option = console.nextInt();
-
-                        while (option != 0) {
-                            boolean found = false;
-                            for (Car car : allCars) {
-                                if (car.getID() == option) {
-                                    found = true;
-                                    if(!cars.contains(car))
-                                        cars.add(car);
-                                    else{
-                                        System.out.println("Car is already selected");
+                            while (option != 0) {
+                                boolean found = false;
+                                for (Part part : allParts) {
+                                    if (part.getID() == option) {
+                                        found = true;
+                                        if (!parts.contains(part))
+                                            parts.add(part);
+                                        else {
+                                            System.out.println("Part is already selected");
+                                        }
+                                        break;
                                     }
-                                    break;
                                 }
+                                if (!found) {
+                                    System.out.println("Part not found in warehouse");
+                                }
+                                option = console.nextInt();
                             }
-                            if(!found) {
-                                System.out.println("Car not found in warehouse");
+
+                            Car car = new Car(id, brand, model, price, yearOfReg, motor, parts);
+                            ((SalespersonController) this.controller).add(car);
+
+                            for (Part part : car.getUsableParts()) {
+                                List<Car> carsForPart = part.getForCars();
+                                carsForPart.add(car);
+                                part.setForCars(carsForPart);
                             }
+                        } else if (type.equals("Part") || type.equals("part")) {
+                            System.out.println("Enter part ID:");
+                            int id = console.nextInt();
+                            console.nextLine();
+                            System.out.println("Enter part brand:");
+                            String brand = console.nextLine();
+                            System.out.println("Enter part model:");
+                            String model = console.nextLine();
+                            System.out.println("Enter part price:");
+                            Double price = console.nextDouble();
+
+                            System.out.println("\n");
+                            List<Car> cars = new ArrayList<>();
+                            List<Car> allCars = ((SalespersonController) this.controller).getAllCars();
+                            System.out.println("Choose from the following cars the ones that can be used on this part:");
+                            System.out.println("Type 0 when you finished adding all the cars");
+                            ((SalespersonController) this.controller).updateViewAllCars();
                             option = console.nextInt();
-                        }
 
-                        Part part = new Part(id, brand, model, price, cars);
-                        ((SalespersonController) this.controller).add(part);
+                            while (option != 0) {
+                                boolean found = false;
+                                for (Car car : allCars) {
+                                    if (car.getID() == option) {
+                                        found = true;
+                                        if (!cars.contains(car))
+                                            cars.add(car);
+                                        else {
+                                            System.out.println("Car is already selected");
+                                        }
+                                        break;
+                                    }
+                                }
+                                if (!found) {
+                                    System.out.println("Car not found in warehouse");
+                                }
+                                option = console.nextInt();
+                            }
 
-                        for (Car car : part.getForCars()) {
-                            List<Part> partForCars = car.getUsableParts();
-                            partForCars.add(part);
-                            car.setUsableParts(partForCars);
+                            Part part = new Part(id, brand, model, price, cars);
+                            ((SalespersonController) this.controller).add(part);
+
+                            for (Car car : part.getForCars()) {
+                                List<Part> partForCars = car.getUsableParts();
+                                partForCars.add(part);
+                                car.setUsableParts(partForCars);
+                            }
+                        } else {
+                            System.out.println("Invalid type. Please try again");
                         }
-                    } else {
-                        System.out.println("Invalid type. Please try again");
                     }
-                    this.menu();
+                    if(savingOption == 2)
+                        //code for database saving
+                    this.menu(savingOption);
                 case 2:
                     System.out.println("What ID has the product you want to remove from inventory?");
-                    ((SalespersonController) this.controller).remove(console.nextInt());
-                    this.menu();
+                    if(savingOption == 1)
+                        ((SalespersonController) this.controller).remove(console.nextInt());
+                    if(savingOption == 2)
+                        //code for database saving
+                    this.menu(savingOption);
                 case 3:
                     System.out.println("What ID has the product you want to update");
-                    int id = console.nextInt();
+                    if(savingOption == 1) {
+                        int id = console.nextInt();
 
-                    boolean found = false;
-                    Merchandise product;
-                    for(Merchandise merch : this.inventory.getCarsAndParts()){
-                        if(merch.getID() == id){
-                            found = true;
-                            console.nextLine();
-                            product = merch;
-                            System.out.println("What category do you want to update:");
-                            String category = console.nextLine();
+                        boolean found = false;
+                        Merchandise product;
+                        for (Merchandise merch : this.inventory.getCarsAndParts()) {
+                            if (merch.getID() == id) {
+                                found = true;
+                                console.nextLine();
+                                product = merch;
+                                System.out.println("What category do you want to update:");
+                                String category = console.nextLine();
 
-                            if(category.equals("Price") || category.equals("price")){
-                                System.out.println("New price:");
-                                product.setPrice(console.nextDouble());
-                            }
-
-                            if(merch instanceof Car && (category.equals("Add parts") || category.equals("add parts"))){
-                                List<Part> parts = ((Car) merch).getUsableParts();
-                                List<Part> allParts = ((SalespersonController) this.controller).getAllParts();
-                                System.out.println("Choose from the following parts the ones that you want to add for this vehicle:");
-                                System.out.println("Type 0 when you finished adding all the parts");
-                                ((SalespersonController) this.controller).updateViewAllParts();
-                                option = console.nextInt();
-
-                                while (option != 0) {
-                                    boolean foundProduct = false;
-                                    for (Part part : allParts) {
-                                        if (part.getID() == option) {
-                                            foundProduct = true;
-                                            if(!parts.contains(part)) {
-                                                parts.add(part);
-                                                List<Car> cars = part.getForCars();
-                                                cars.add((Car) merch);
-                                                part.setForCars(cars);
-                                            }
-                                            else{
-                                                System.out.println("Part is already selected");
-                                            }
-                                            break;
-                                        }
-                                    }
-                                    if(!foundProduct) {
-                                        System.out.println("Part not found in warehouse");
-                                    }
-                                    option = console.nextInt();
+                                if (category.equals("Price") || category.equals("price")) {
+                                    System.out.println("New price:");
+                                    product.setPrice(console.nextDouble());
                                 }
 
-                                ((Car) product).setUsableParts(parts);
-                            }
-                            if(merch instanceof Part && (category.equals("Add cars") || category.equals("add cars"))){
-                                List<Car> cars = ((Part) merch).getForCars();
-                                List<Car> allCars = ((SalespersonController) this.controller).getAllCars();
-                                System.out.println("Choose from the following cars the ones that you want to add to this part:");
-                                System.out.println("Type 0 when you finished adding all the cars");
-                                ((SalespersonController) this.controller).updateViewAllCars();
-                                option = console.nextInt();
-
-                                while (option != 0) {
-                                    boolean foundProduct = false;
-                                    for (Car car : allCars) {
-                                        if (car.getID() == option) {
-                                            foundProduct = true;
-                                            if(!cars.contains(car)) {
-                                                cars.add(car);
-                                                List<Part> parts = car.getUsableParts();
-                                                parts.add((Part) merch);
-                                                car.setUsableParts(parts);
-                                            }
-                                            else{
-                                                System.out.println("Car is already in the list");
-                                            }
-                                            break;
-                                        }
-                                    }
-                                    if(!foundProduct) {
-                                        System.out.println("Car not found in warehouse");
-                                    }
+                                if (merch instanceof Car && (category.equals("Add parts") || category.equals("add parts"))) {
+                                    List<Part> parts = ((Car) merch).getUsableParts();
+                                    List<Part> allParts = ((SalespersonController) this.controller).getAllParts();
+                                    System.out.println("Choose from the following parts the ones that you want to add for this vehicle:");
+                                    System.out.println("Type 0 when you finished adding all the parts");
+                                    ((SalespersonController) this.controller).updateViewAllParts();
                                     option = console.nextInt();
-                                }
 
-                                ((Part) product).setForCars(cars);
+                                    while (option != 0) {
+                                        boolean foundProduct = false;
+                                        for (Part part : allParts) {
+                                            if (part.getID() == option) {
+                                                foundProduct = true;
+                                                if (!parts.contains(part)) {
+                                                    parts.add(part);
+                                                    List<Car> cars = part.getForCars();
+                                                    cars.add((Car) merch);
+                                                    part.setForCars(cars);
+                                                } else {
+                                                    System.out.println("Part is already selected");
+                                                }
+                                                break;
+                                            }
+                                        }
+                                        if (!foundProduct) {
+                                            System.out.println("Part not found in warehouse");
+                                        }
+                                        option = console.nextInt();
+                                    }
+
+                                    ((Car) product).setUsableParts(parts);
+                                }
+                                if (merch instanceof Part && (category.equals("Add cars") || category.equals("add cars"))) {
+                                    List<Car> cars = ((Part) merch).getForCars();
+                                    List<Car> allCars = ((SalespersonController) this.controller).getAllCars();
+                                    System.out.println("Choose from the following cars the ones that you want to add to this part:");
+                                    System.out.println("Type 0 when you finished adding all the cars");
+                                    ((SalespersonController) this.controller).updateViewAllCars();
+                                    option = console.nextInt();
+
+                                    while (option != 0) {
+                                        boolean foundProduct = false;
+                                        for (Car car : allCars) {
+                                            if (car.getID() == option) {
+                                                foundProduct = true;
+                                                if (!cars.contains(car)) {
+                                                    cars.add(car);
+                                                    List<Part> parts = car.getUsableParts();
+                                                    parts.add((Part) merch);
+                                                    car.setUsableParts(parts);
+                                                } else {
+                                                    System.out.println("Car is already in the list");
+                                                }
+                                                break;
+                                            }
+                                        }
+                                        if (!foundProduct) {
+                                            System.out.println("Car not found in warehouse");
+                                        }
+                                        option = console.nextInt();
+                                    }
+
+                                    ((Part) product).setForCars(cars);
+                                }
+                                ((SalespersonController) this.controller).update(product);
+                                break;
                             }
-                            ((SalespersonController) this.controller).update(product);
-                            break;
+                        }
+
+                        if (!found) {
+                            System.out.println("Product not found in warehouse. Consider trying again");
                         }
                     }
-
-                    if(!found) {
-                        System.out.println("Product not found in warehouse. Consider trying again");
-                    }
-                    this.menu();
+                    if(savingOption == 2)
+                        //code for database saving
+                    this.menu(savingOption);
                 case 4:
                     ((SalespersonController) this.controller).updateViewAllCars();
-                    this.menu();
+                    this.menu(savingOption);
                 case 5:
                     ((SalespersonController) this.controller).updateViewAllParts();
-                    this.menu();
+                    this.menu(savingOption);
                 case 6:
                     ((SalespersonController) this.controller).updateViewSalary();
-                    this.menu();
+                    this.menu(savingOption);
                 case 7:
                     System.out.println("What ID has the car?");
                     ((SalespersonController) this.controller).updateViewPartsForACar(console.nextInt());
-                    this.menu();
+                    this.menu(savingOption);
                 case 8:
                     System.out.println("What ID has the part?");
                     ((SalespersonController) this.controller).updateViewCarsForAPart(console.nextInt());
-                    this.menu();
+                    this.menu(savingOption);
                 case 9:
                     System.out.println("What is the highest price you want a car to have ?");
                     ((SalespersonController) this.controller).updateViewFilterAllCarsByPrice(console.nextInt());
-                    this.menu();
+                    this.menu(savingOption);
                 case 0:
                     exit(0);
                 default:
                     System.out.println("Wrong input...try a value from 0 to 9");
-                    this.menu();
+                    this.menu(savingOption);
 
             }
         }
@@ -491,9 +529,11 @@ public class Menu implements RegisterLogin {
         part1.setForCars(cars);
 
         List<Part> parts2 = new ArrayList<>();
-        cars.clear();
-        cars.add(car3);
-        Part part2 = new Part(5, "Fuchs", "T70-P", 57.2, cars);
+        List<Car> cars2 = new ArrayList<>();
+
+        cars2.add(car3);
+        Part part2 = new Part(5, "Fuchs", "T70-P", 57.2, cars2);
+        parts2.add(part1);
         parts2.add(part2);
         car3.setUsableParts(parts2);
 
@@ -503,12 +543,12 @@ public class Menu implements RegisterLogin {
     }
 
     public void populateInventoryFromDatabase(){
-        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
-        String userName = "tudor";
-        String password = "cardeal";
+        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "radu";
+        String password = "1234";
         ResultSet resultSet;
 
-        try(Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement();){
+        try(Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()){
             String sql = "SELECT * FROM Cars INNER JOIN Inventory ON Cars.ID = Inventory.ID";
             resultSet = statement.executeQuery(sql);
             while(resultSet.next()){
@@ -563,12 +603,12 @@ public class Menu implements RegisterLogin {
     }
 
     void populateUserRepo(){
-        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
-        String userName = "tudor";
-        String password = "cardeal";
+        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "radu";
+        String password = "1234";
         ResultSet resultSet;
 
-        try(Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement();){
+        try(Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()){
             String sql = "SELECT * FROM Customers INNER JOIN UserRepo ON Customers.username = UserRepo.username";
             resultSet = statement.executeQuery(sql);
             while(resultSet.next()){
@@ -588,12 +628,11 @@ public class Menu implements RegisterLogin {
     }
 
     void insertUser(String type, String user, String pass, String firstName, String lastName){
-        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
-        String userName = "tudor";
-        String password = "cardeal";
-        ResultSet resultSet;
+        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "radu";
+        String password = "1234";
 
-        try(Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement();){
+        try(Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()){
             if(type.equals("Customer") || type.equals("customer")){
                 String sqlUserRepo = "INSERT INTO UserRepo (username) Values(" + "'" + user + "'" + ")";
                 statement.executeUpdate(sqlUserRepo);
