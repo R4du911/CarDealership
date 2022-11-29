@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ad63f6f-3f5b-45db-926c-5cef23154c3d" name="Changes" comment="organised files in packages">
+    <list default="true" id="9ad63f6f-3f5b-45db-926c-5cef23154c3d" name="Changes" comment="xml changes">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Repo/InMemoInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Repo/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Salesperson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Salesperson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test/CustomerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test/CustomerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test/SalespersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test/SalespersonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Model/Salesperson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Salesperson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/test/CustomerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/CustomerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/test/SalespersonTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/SalespersonTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,6 +238,8 @@
       <workItem from="1669399803297" duration="759000" />
       <workItem from="1669542276881" duration="303000" />
       <workItem from="1669556323458" duration="11631000" />
+      <workItem from="1669658735143" duration="905000" />
+      <workItem from="1669704779705" duration="4070000" />
     </task>
     <task id="LOCAL-00001" summary="V1.0">
       <created>1666884622186</created>
@@ -318,11 +332,6 @@
           <properties class="java.lang.AssertionError" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Menu.java</url>
-          <line>121</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

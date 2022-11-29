@@ -9,9 +9,9 @@ import Interface.*;
 
 public class Salesperson extends Person implements DealershipSystem {
     private final double salary;
-    final private InMemoInventory inMemoInventory;
+    final private Inventory inMemoInventory;
 
-    public Salesperson(String user, String passwd, String firstName, String lastName, double salary, InMemoInventory inventory) {
+    public Salesperson(String user, String passwd, String firstName, String lastName, double salary, Inventory inventory) {
         super(user, passwd, firstName, lastName);
         this.salary = salary;
         this.inMemoInventory = inventory;

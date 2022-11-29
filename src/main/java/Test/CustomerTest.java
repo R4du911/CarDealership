@@ -3,7 +3,7 @@ package Test;
 import Controller.CustomerController;
 import Errors.CustomIllegalArgument;
 import Model.*;
-import Model.Repo.InMemoInventory;
+import Model.Repo.Inventory;
 import View.CustomerView;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CustomerTest {
-    InMemoInventory inventory = new InMemoInventory();
+    Inventory inventory = new Inventory();
     Customer customer = new Customer("Admin", "admin", "Costel", "Marculescu", 10000.0, inventory);
     CustomerView view;
     CustomerController customerCtrl = new CustomerController(customer, view);

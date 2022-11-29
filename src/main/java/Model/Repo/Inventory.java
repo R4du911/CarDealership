@@ -5,14 +5,14 @@ import Model.Merchandise;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemoInventory {
+public class Inventory {
     private final List<Merchandise> carsAndParts;
 
     public List<Merchandise> getCarsAndParts() {
         return carsAndParts;
     }
 
-    public InMemoInventory() {
+    public Inventory() {
         this.carsAndParts = new ArrayList<>();
     }
 

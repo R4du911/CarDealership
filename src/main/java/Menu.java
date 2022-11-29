@@ -1,7 +1,7 @@
 import Controller.*;
 import Interface.RegisterLogin;
 import Model.*;
-import Model.Repo.InMemoInventory;
+import Model.Repo.Inventory;
 import Model.Repo.UserRepo;
 import View.CustomerView;
 import View.SalespersonView;
@@ -14,11 +14,13 @@ import static java.lang.System.exit;
 
 public class Menu implements RegisterLogin {
     private Controller controller;
-    private InMemoInventory inventory;
+    private Inventory inventory;
     private final UserRepo userRepo = new UserRepo();
 
     @Override
     public void login() throws IllegalArgumentException {
+        this.populateUserRepo();
+
         Scanner console = new Scanner(System.in);
         System.out.println("Your user name: ");
         String user = console.nextLine();
@@ -45,13 +47,13 @@ public class Menu implements RegisterLogin {
             if (userSaved.getUser().equals(user) && userSaved.getPasswd().equals(passwd)) {
                 found = true;
                 if (userSaved instanceof Customer) {
-                    this.inventory = new InMemoInventory();
+                    this.inventory = new Inventory();
                     CustomerView view = new CustomerView();
                     this.controller = new CustomerController((Customer) userSaved, view);
                     this.populateInMemory();
                     this.menu();
                 } else {
-                    this.inventory = new InMemoInventory();
+                    this.inventory = new Inventory();
                     SalespersonView view = new SalespersonView();
                     this.controller = new SalespersonController((Salesperson) userSaved, view);
                     this.populateInMemory();
@@ -73,6 +75,8 @@ public class Menu implements RegisterLogin {
 
     @Override
     public void register() throws IllegalArgumentException {
+        this.populateUserRepo();
+
         Scanner console = new Scanner(System.in);
         System.out.println("You want to register as an: ");
         String type = console.nextLine();
@@ -108,20 +112,26 @@ public class Menu implements RegisterLogin {
         String lastName = console.nextLine();
 
         if (type.equals("Customer") || type.equals("customer")) {
-            this.inventory = new InMemoInventory();
+            this.inventory = new Inventory();
             this.populateInMemory();
+
             Customer customer = new Customer(user, passwd, firstName, lastName, 25000.0, inventory);
             userRepo.addUser(customer);
+            this.insertUser(type,user,passwd,firstName,lastName);
+
             CustomerView view = new CustomerView();
             this.controller = new CustomerController(customer, view);
             this.menu();
         }
 
         if (type.equals("Salesperson") || type.equals("salesperson")) {
-            this.inventory = new InMemoInventory();
-            this.populateInventoryFromDatabase();
+            this.inventory = new Inventory();
+            this.populateInMemory();
+
             Salesperson salesperson = new Salesperson(user, passwd, firstName, lastName, 1300.0, inventory);
             userRepo.addUser(salesperson);
+            this.insertUser(type,user,passwd,firstName,lastName);
+
             SalespersonView view = new SalespersonView();
             this.controller = new SalespersonController(salesperson, view);
             this.menu();
@@ -493,9 +503,9 @@ public class Menu implements RegisterLogin {
     }
 
     public void populateInventoryFromDatabase(){
-        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
-        String userName = "radu";
-        String password = "1234";
+        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";
         ResultSet resultSet;
 
         try(Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement();){
@@ -545,6 +555,61 @@ public class Menu implements RegisterLogin {
                     }
                     ((Part) merch).setForCars(cars);
                 }
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    void populateUserRepo(){
+        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";
+        ResultSet resultSet;
+
+        try(Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement();){
+            String sql = "SELECT * FROM Customers INNER JOIN UserRepo ON Customers.username = UserRepo.username";
+            resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                this.userRepo.addUser(new Customer(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getString(4),resultSet.getDouble(5),this.inventory));
+            }
+
+            String sql2 = "SELECT * FROM Salespersons INNER JOIN UserRepo ON Salespersons.username = UserRepo.username";
+            resultSet = statement.executeQuery(sql2);
+            while(resultSet.next()){
+                this.userRepo.addUser(new Salesperson(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getString(4),resultSet.getDouble(5),this.inventory));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    void insertUser(String type, String user, String pass, String firstName, String lastName){
+        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";
+        ResultSet resultSet;
+
+        try(Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement();){
+            if(type.equals("Customer") || type.equals("customer")){
+                String sqlUserRepo = "INSERT INTO UserRepo (username) Values(" + "'" + user + "'" + ")";
+                statement.executeUpdate(sqlUserRepo);
+
+                String sqlCustomers = "INSERT INTO Customers (username,password,firstname,lastname,money) VALUES (" + "'" + user + "'" + "," + "'" + pass + "'" + "," +
+                        "'" + firstName + "'" + "," + "'" + lastName + "'" + ",25000.0)";
+                statement.executeUpdate(sqlCustomers);
+            }
+            if(type.equals("Salesperson") || type.equals("salesperson")){
+                String sqlUserRepo="INSERT INTO UserRepo Values("+ "'" + user+ "'" +")";
+                statement.executeUpdate(sqlUserRepo);
+
+                String sqlSalesperson="INSERT INTO Salespersons VALUES (" + "'" + user +"'" +"," + "'" + pass + "'" + "," + "'" + firstName + "'" + "," +
+                        "'" + lastName + "'" + ",1300.0)";
+                statement.executeUpdate(sqlSalesperson);
+
             }
 
         } catch (SQLException ex) {

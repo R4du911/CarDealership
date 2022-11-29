@@ -12,9 +12,9 @@ public class Customer extends Person implements CustomerSystem {
     private final List<Order> orders;
     private Double money;
     private final ProductList pendingOrder;
-    private final InMemoInventory inMemoInventory;
+    private final Inventory inMemoInventory;
 
-    public Customer(String user, String passwd, String firstName, String lastName, Double money, InMemoInventory inventory) {
+    public Customer(String user, String passwd, String firstName, String lastName, Double money, Inventory inventory) {
         super(user, passwd, firstName, lastName);
         this.orders = new ArrayList<>();
         this.money = money;

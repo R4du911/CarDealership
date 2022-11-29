@@ -4,7 +4,7 @@ import Controller.SalespersonController;
 import Errors.CustomIllegalArgument;
 import Model.Car;
 import Model.Part;
-import Model.Repo.InMemoInventory;
+import Model.Repo.Inventory;
 import Model.Salesperson;
 import View.SalespersonView;
 
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class SalespersonTest {
-    InMemoInventory inventory = new InMemoInventory();
+    Inventory inventory = new Inventory();
     Salesperson salesperson = new Salesperson("Admin", "admin", "Costel", "Marculescu", 234.0, inventory);
     SalespersonView view;
     SalespersonController salespersonCtrl = new SalespersonController(salesperson, view);
