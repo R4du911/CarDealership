@@ -31,6 +31,14 @@ public class SalespersonController extends Controller {
         }
     }
 
+    public void insertNewCarDatabase(int id, String brand, String model_car, double price, int yearOfReg, String motor, List<Part> parts){
+        model.insertNewCar(id,brand,model_car,price,yearOfReg,motor,parts);
+    }
+
+    public void insertNewPartDatabase(int id, String brand, String model_part, double price, List<Car> cars) {
+        model.insertNewPart(id,brand,model_part,price,cars);
+    }
+
     public void remove(int ID) {
         try{
             model.remove(ID);
@@ -39,12 +47,28 @@ public class SalespersonController extends Controller {
         }
     }
 
+    public void deleteProductDatabase(int id){
+        model.deleteProduct(id);
+    }
+
     public void update(Merchandise merch){
         try {
             model.update(merch);
         }catch(Exception error){
             System.out.println(error.getMessage());
         }
+    }
+
+    public void updatePriceDatabase(int id, Double newPrice){
+        model.updatePrice(id,newPrice);
+    }
+
+    public void updatePartsForCarDatabase(int id, List<Part> parts){
+        model.updatePartsForCar(id,parts);
+    }
+
+    public void updateCarsForPartDatabase(int id, List<Car> cars){
+        model.updateCarsForPart(id,cars);
     }
 
     public List<Car> getAllCars(){return model.getAllCars();}

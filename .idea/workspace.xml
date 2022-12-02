@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ad63f6f-3f5b-45db-926c-5cef23154c3d" name="Changes" comment="organised files in packages">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/RegisterLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/RegisterLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/SalespersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/SalespersonController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/Salesperson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Salesperson.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Menu.class" afterDir="false" />
     </list>
@@ -234,7 +231,10 @@
       <workItem from="1669556323458" duration="11631000" />
       <workItem from="1669658735143" duration="905000" />
       <workItem from="1669704779705" duration="4070000" />
-      <workItem from="1669717719660" duration="2555000" />
+      <workItem from="1669717719660" duration="3755000" />
+      <workItem from="1669733908420" duration="151000" />
+      <workItem from="1669986202844" duration="2469000" />
+      <workItem from="1669989947274" duration="6115000" />
     </task>
     <task id="LOCAL-00001" summary="V1.0">
       <created>1666884622186</created>
