@@ -73,10 +73,6 @@ public class Customer extends Person implements CustomerSystem {
             }
         }
 
-        for (Merchandise merch : this.pendingOrder.getPurchased()) {
-            this.inMemoInventory.remove_Merch(merch.getID());
-        }
-
         this.setMoney(this.getMoney() - sumPrice);
 
         ProductList boughtMerch = new ProductList();
@@ -84,8 +80,122 @@ public class Customer extends Person implements CustomerSystem {
         this.orders.add(new Order(boughtMerch, date));
 
         this.pendingOrder.setPurchased(new ArrayList<>());
+    }
+
+    public void addOrderToDatabase(Date date) throws CustomIllegalArgument{
+        Double sumPrice = 0.0;
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+        if (this.pendingOrder.getPurchased().isEmpty()) {
+            throw new CustomIllegalArgument("ProductList is empty");
+        }
+
+        for (Merchandise merch : this.pendingOrder.getPurchased()) {
+            sumPrice += merch.getPrice();
+            if (sumPrice > this.getMoney()) {
+                throw new CustomIllegalArgument("Not enough money");
+            }
+        }
+
+        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "radu";
+        String password = "1234";
+
+        /*String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";*/
+
+        ResultSet resultSet;
+
+        try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {
+            String sqlUpdateOrder = "INSERT INTO Orders (Customerusername,Datum) VALUES (" + "'" + this.getUser() + "'" + ", " + "'" + sqlDate + "'" + ")";
+            statement.executeUpdate(sqlUpdateOrder);
+
+            String sqlGetOrderID = "SELECT ID FROM Orders WHERE Customerusername = " + "'" + this.getUser() + "'" + " AND Datum = " + "'" + sqlDate + "'";
+            resultSet = statement.executeQuery(sqlGetOrderID);
+            int OrderID = 0;
+            while (resultSet.next()) {
+                OrderID = resultSet.getInt(1);
+            }
+
+            String sqlUpdateProductList = "INSERT INTO ProductLists (IDOrder) VALUES (" + "'" + OrderID + "'" + ")";
+            statement.executeUpdate(sqlUpdateProductList);
+
+            String sqlGetProductListID = "SELECT ID FROM ProductLists WHERE IDOrder = " + OrderID;
+            resultSet = statement.executeQuery(sqlGetProductListID);
+            int ProductListID = 0;
+            while(resultSet.next()){
+                ProductListID = resultSet.getInt(1);
+            }
+
+            for(Merchandise merch : this.pendingOrder.getPurchased()){
+                String sqlBoughtItems  = "INSERT INTO Products_ProductLists (IDProdList,IDProd) VALUES (" + "'" + ProductListID + "'" + ", " + "'" + merch.getID() + "'" + ")";
+                statement.executeUpdate(sqlBoughtItems);
+                this.removeProductFromShoppingListDatabase(merch.getID());
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    public void populateOrderList(){
+        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "radu";
+        String password = "1234";
+
+        /*String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";*/
+
+        ResultSet resultSetOrder;
+        ResultSet resultSetProdList;
+        ResultSet resultSetBoughtProducts;
+
+        try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {
+            String sqlPopulateOrder = "SELECT ID,Datum FROM Orders WHERE Customerusername = " + "'" + this.getUser() + "'";
+            resultSetOrder = statement.executeQuery(sqlPopulateOrder);
+            List<Integer> OrderIDs = new ArrayList<>();
+            List<Date> OrderDates = new ArrayList<>();
+
+            while(resultSetOrder.next()){
+                OrderIDs.add(resultSetOrder.getInt(1));
+                OrderDates.add(new Date(resultSetOrder.getDate(2).getTime()));
+            }
 
 
+            int counter = 0;
+            while (counter < OrderIDs.size()) {
+                List<Merchandise> products = new ArrayList<>();
+                String sqlPopulateProductList = "SELECT ID FROM ProductLists WHERE IDOrder = " + OrderIDs.get(counter);
+                Date date = OrderDates.get(counter);
+                resultSetProdList = statement.executeQuery(sqlPopulateProductList);
+
+                if(resultSetProdList.next()){
+                    String sqlPopulateBoughtProd = "SELECT IDProd FROM Products_ProductLists WHERE IDProdList = " + resultSetProdList.getInt(1);
+                    resultSetBoughtProducts = statement.executeQuery(sqlPopulateBoughtProd);
+
+                    while (resultSetBoughtProducts.next()) {
+                        for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
+                            if(merch.getID() == resultSetBoughtProducts.getInt(1)){
+                                products.add(merch);
+                            }
+                        }
+                    }
+                }
+
+                ProductList productList = new ProductList();
+                productList.setPurchased(products);
+                Order order = new Order(productList,date);
+                this.orders.add(order);
+                counter++;
+            }
+
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void addProductToList(int ID) throws CustomIllegalArgument{
@@ -100,13 +210,13 @@ public class Customer extends Person implements CustomerSystem {
     }
 
     public void addProductToShoppingListDatabase(int IDProd) {
-        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";*/
+        String password = "1234";
 
-        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "tudor";
-        String password = "cardeal";
+        String password = "cardeal";*/
 
 
         try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {
@@ -119,13 +229,13 @@ public class Customer extends Person implements CustomerSystem {
     }
 
     public void populateShoppingList(){
-        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";*/
+        String password = "1234";
 
-        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "tudor";
-        String password = "cardeal";
+        String password = "cardeal";*/
 
         ResultSet resultSet;
 
@@ -164,13 +274,13 @@ public class Customer extends Person implements CustomerSystem {
     }
 
     public void removeProductFromShoppingListDatabase(int IDProd) {
-        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";*/
+        String password = "1234";
 
-        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "tudor";
-        String password = "cardeal";
+        String password = "cardeal";*/
 
 
         try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {

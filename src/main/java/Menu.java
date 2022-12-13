@@ -206,14 +206,19 @@ public class Menu implements RegisterLogin {
                     this.menu(savingOption);
                 case 3:
                     Date date = new Date();
-                    if (savingOption == 1)
-                        ((CustomerController) this.controller).addOrder(date);
+
                     if (savingOption == 2)
-                        //code for database saving
-                        this.menu(savingOption);
+                        ((CustomerController) this.controller).addOrderToDatabase(date);
+
+                    ((CustomerController) this.controller).addOrder(date);
+
+                    this.menu(savingOption);
                 case 4:
-                    ((CustomerController) this.controller).populateShoppingList();
+                    if(savingOption == 2)
+                        ((CustomerController) this.controller).populateShoppingList();
+
                     ((CustomerController) this.controller).updateViewPendingOrder();
+
                     this.menu(savingOption);
                 case 5:
                     ((CustomerController) this.controller).updateViewAllCars();
@@ -228,7 +233,11 @@ public class Menu implements RegisterLogin {
                     ((CustomerController) this.controller).updateViewMinCar();
                     this.menu(savingOption);
                 case 9:
+                    if(savingOption == 2)
+                        ((CustomerController) this.controller).populateOrderList();
+
                     ((CustomerController) this.controller).updateViewAllOrders();
+
                     this.menu(savingOption);
                 case 10:
                     System.out.println("What ID has the car?");
@@ -582,13 +591,13 @@ public class Menu implements RegisterLogin {
     }
 
     public void populateInventoryFromDatabase() {
-        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";*/
+        String password = "1234";
 
-        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "tudor";
-        String password = "cardeal";
+        String password = "cardeal";*/
 
         ResultSet resultSet;
 
@@ -647,13 +656,13 @@ public class Menu implements RegisterLogin {
     }
 
     void populateUserRepo() {
-        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";*/
+        String password = "1234";
 
-        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "tudor";
-        String password = "cardeal";
+        String password = "cardeal";*/
 
         ResultSet resultSet;
 
@@ -677,13 +686,13 @@ public class Menu implements RegisterLogin {
     }
 
     void insertUser(String type, String user, String pass, String firstName, String lastName) {
-        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";*/
+        String password = "1234";
 
-        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "tudor";
-        String password = "cardeal";
+        String password = "cardeal";*/
 
         try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {
             if (type.equals("Customer") || type.equals("customer")) {

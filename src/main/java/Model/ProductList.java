@@ -40,7 +40,10 @@ public class ProductList {
             }
             else{
                 result += ((Part) product).toStringPart();
+                System.out.println("\n");
             }
+            count++;
+            result += "\n";
         }
         return result;
     }

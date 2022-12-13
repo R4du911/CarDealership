@@ -9,7 +9,12 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ProductList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ProductList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/Salesperson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Salesperson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/CustomerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Model/Salesperson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Salesperson.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -334,6 +339,7 @@
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Menu" memberName="controller" />
+        <PinnedItemInfo parentTag="com.microsoft.sqlserver.jdbc.SQLServerResultSet" memberName="columnNames" />
       </pinned-members>
     </pin-to-top-manager>
   </component>

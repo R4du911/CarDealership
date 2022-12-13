@@ -40,6 +40,18 @@ public class CustomerController extends Controller{
         }
     }
 
+    public void addOrderToDatabase(Date date){
+        try{
+            model.addOrderToDatabase(date);
+        }catch(Exception error){
+            System.out.println(error.getMessage());
+        }
+    }
+
+    public void populateOrderList(){
+        model.populateOrderList();
+    }
+
     public void addProductToList(int ID) {
         try {
             model.addProductToList(ID);
