@@ -48,6 +48,10 @@ public class CustomerController extends Controller{
         }
     }
 
+    public void addProductToShoppingListDatabase(int IDProduct){
+        model.addProductToShoppingListDatabase(IDProduct);
+    }
+
     public void removeProductFromList(int ID) {
         try {
             model.removeProductFromList(ID);
@@ -56,8 +60,16 @@ public class CustomerController extends Controller{
         }
     }
 
+    public void removeProductFromShoppingListDatabase(int IDProd){
+        model.removeProductFromShoppingListDatabase(IDProd);
+    }
+
     public List<Merchandise> viewPendingOrder() {
         return model.viewPendingOrder();
+    }
+
+    public void populateShoppingList(){
+        model.populateShoppingList();
     }
 
     public List<Part> getAllPartsForACar(int ID) {

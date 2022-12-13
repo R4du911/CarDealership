@@ -186,18 +186,24 @@ public class Menu implements RegisterLogin {
             switch (option) {
                 case 1:
                     System.out.println("What ID has the product you want to add?");
-                    if (savingOption == 1)
-                        ((CustomerController) this.controller).addProductToList(console.nextInt());
+                    int IDProduct = console.nextInt();
+
+                    ((CustomerController) this.controller).addProductToList(IDProduct);
+
                     if (savingOption == 2)
-                        //code for database saving
-                        this.menu(savingOption);
+                        ((CustomerController) this.controller).addProductToShoppingListDatabase(IDProduct);
+
+                    this.menu(savingOption);
                 case 2:
                     System.out.println("What ID has the product you want to remove?");
-                    if (savingOption == 1)
-                        ((CustomerController) this.controller).removeProductFromList(console.nextInt());
+                    int IDProductRemove = console.nextInt();
+
                     if (savingOption == 2)
-                        //code for database saving
-                        this.menu(savingOption);
+                        ((CustomerController) this.controller).removeProductFromShoppingListDatabase(IDProductRemove);
+
+                    ((CustomerController) this.controller).removeProductFromList(IDProductRemove);
+
+                    this.menu(savingOption);
                 case 3:
                     Date date = new Date();
                     if (savingOption == 1)
@@ -206,6 +212,7 @@ public class Menu implements RegisterLogin {
                         //code for database saving
                         this.menu(savingOption);
                 case 4:
+                    ((CustomerController) this.controller).populateShoppingList();
                     ((CustomerController) this.controller).updateViewPendingOrder();
                     this.menu(savingOption);
                 case 5:
@@ -575,9 +582,14 @@ public class Menu implements RegisterLogin {
     }
 
     public void populateInventoryFromDatabase() {
-        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";
+        String password = "1234";*/
+
+        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";
+
         ResultSet resultSet;
 
         try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {
@@ -635,9 +647,14 @@ public class Menu implements RegisterLogin {
     }
 
     void populateUserRepo() {
-        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";
+        String password = "1234";*/
+
+        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";
+
         ResultSet resultSet;
 
         try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {
@@ -660,9 +677,13 @@ public class Menu implements RegisterLogin {
     }
 
     void insertUser(String type, String user, String pass, String firstName, String lastName) {
-        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";
+        String password = "1234";*/
+
+        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";
 
         try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {
             if (type.equals("Customer") || type.equals("customer")) {
@@ -672,6 +693,9 @@ public class Menu implements RegisterLogin {
                 String sqlCustomers = "INSERT INTO Customers (username,password,firstname,lastname,money) VALUES (" + "'" + user + "'" + "," + "'" + pass + "'" + "," +
                         "'" + firstName + "'" + "," + "'" + lastName + "'" + ",25000.0)";
                 statement.executeUpdate(sqlCustomers);
+
+                String sqlShoppingList =  "INSERT INTO ShoppingLists (Customerusername) VALUES (" + "'" + user + "'" + ")";
+                statement.executeUpdate(sqlShoppingList);
             }
             if (type.equals("Salesperson") || type.equals("salesperson")) {
                 String sqlUserRepo = "INSERT INTO UserRepo Values(" + "'" + user + "'" + ")";

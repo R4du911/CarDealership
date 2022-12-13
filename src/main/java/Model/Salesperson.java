@@ -40,9 +40,13 @@ public class Salesperson extends Person implements DealershipSystem {
     }
 
     public void insertNewCar(int id, String brand, String model, double price, int yearOfReg, String motor, List<Part> parts) {
-        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";
+        String password = "1234";*/
+
+        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";
 
         try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {
             String sqlAddToInv = "INSERT INTO Inventory (ID) VALUES (" + "'" + id + "'" + ")";
@@ -64,9 +68,13 @@ public class Salesperson extends Person implements DealershipSystem {
     }
 
     public void insertNewPart(int id, String brand, String model, double price, List<Car> cars) {
-        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";
+        String password = "1234";*/
+
+        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";
 
         try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {
             String sqlAddToInv = "INSERT INTO Inventory (ID) VALUES (" + "'" + id + "'" + ")";
@@ -103,9 +111,13 @@ public class Salesperson extends Person implements DealershipSystem {
     }
 
     public void deleteProduct(int id){
-        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";
+        String password = "1234";*/
+
+        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";
 
         String type = null;
         for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
@@ -161,9 +173,13 @@ public class Salesperson extends Person implements DealershipSystem {
     }
 
     public void updatePrice(int id, Double newPrice){
-        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";
+        String password = "1234";*/
+
+        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";
 
         String type = null;
         for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
@@ -194,9 +210,13 @@ public class Salesperson extends Person implements DealershipSystem {
     }
 
     public void updatePartsForCar(int id, List<Part> parts){
-        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";
+        String password = "1234";*/
+
+        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";
 
         try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {
             for (Part part : parts) {
@@ -211,9 +231,13 @@ public class Salesperson extends Person implements DealershipSystem {
     }
 
     public void updateCarsForPart(int id, List<Car> cars){
-        String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        /*String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
-        String password = "1234";
+        String password = "1234";*/
+
+        String url = "jdbc:sqlserver://UBB-L33\\SQLEXPRESS01:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
+        String userName = "tudor";
+        String password = "cardeal";
 
         try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {
             for (Car car : cars) {
