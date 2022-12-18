@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ad63f6f-3f5b-45db-926c-5cef23154c3d" name="Changes" comment="xml changes">
+    <list default="true" id="9ad63f6f-3f5b-45db-926c-5cef23154c3d" name="Changes" comment="organised files in packages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ProductList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ProductList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Salesperson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Salesperson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/CustomerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Customer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Salesperson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Salesperson.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +47,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Radu/IdeaProjects/Labor3&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Radu/IdeaProjects/Car-Dealership&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -242,6 +235,10 @@
       <workItem from="1669989947274" duration="6115000" />
       <workItem from="1670875982863" duration="1149000" />
       <workItem from="1670919010809" duration="3599000" />
+      <workItem from="1670970220926" duration="392000" />
+      <workItem from="1671286473498" duration="106000" />
+      <workItem from="1671355152089" duration="22000" />
+      <workItem from="1671358581152" duration="2701000" />
     </task>
     <task id="LOCAL-00001" summary="V1.0">
       <created>1666884622186</created>

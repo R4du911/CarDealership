@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Customer extends Person implements CustomerSystem {
-    private final List<Order> orders;
+    private List<Order> orders;
     private Double money;
     private final ProductList pendingOrder;
     private Inventory inMemoInventory;
@@ -29,6 +29,10 @@ public class Customer extends Person implements CustomerSystem {
 
     public List<Order> getOrders() {
         return orders;
+    }
+
+    public void setOrders(List<Order> orders){
+        this.orders = orders;
     }
 
     public Double getMoney() {return money;}
@@ -152,6 +156,7 @@ public class Customer extends Person implements CustomerSystem {
         ResultSet resultSetOrder;
         ResultSet resultSetProdList;
         ResultSet resultSetBoughtProducts;
+        this.setOrders(new ArrayList<>());
 
         try (Connection connection = DriverManager.getConnection(url, userName, password); Statement statement = connection.createStatement()) {
             String sqlPopulateOrder = "SELECT ID,Datum FROM Orders WHERE Customerusername = " + "'" + this.getUser() + "'";

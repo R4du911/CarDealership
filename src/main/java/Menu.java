@@ -233,8 +233,9 @@ public class Menu implements RegisterLogin {
                     ((CustomerController) this.controller).updateViewMinCar();
                     this.menu(savingOption);
                 case 9:
-                    if(savingOption == 2)
+                    if(savingOption == 2) {
                         ((CustomerController) this.controller).populateOrderList();
+                    }
 
                     ((CustomerController) this.controller).updateViewAllOrders();
 
