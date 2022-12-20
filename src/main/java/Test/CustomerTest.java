@@ -98,7 +98,6 @@ class CustomerTest {
         assert (customerCtrl.getOrders().get(0).getProductList().getPurchased().contains(car1));
         assert (customerCtrl.getOrders().get(0).getProductList().getPurchased().contains(part1));
         assert (!customerCtrl.getOrders().get(0).getProductList().getPurchased().contains(car2));
-        assert (!customerCtrl.getAllCars().contains(car1));
 
         System.out.println("Add order works good...");
 

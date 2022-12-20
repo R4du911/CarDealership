@@ -1,4 +1,5 @@
 import Controller.*;
+import Errors.CustomIllegalArgument;
 import Interface.RegisterLogin;
 import Model.*;
 import Model.Repo.Inventory;
@@ -18,7 +19,7 @@ public class Menu implements RegisterLogin {
     private final UserRepo userRepo = new UserRepo();
 
     @Override
-    public void login(int savingOption) throws IllegalArgumentException {
+    public void login(int savingOption) throws CustomIllegalArgument{
         this.populateUserRepo();
 
         Scanner console = new Scanner(System.in);
@@ -30,6 +31,7 @@ public class Menu implements RegisterLogin {
 
         if (userRepo.getUsers().isEmpty()) {
             System.out.println("User does not exist, do you want to register: ");
+            System.out.println("Type Ja/ja if yes, or anything else to close the program");
             String answer = console.nextLine();
 
             if (answer.equals("ja") || answer.equals("Ja")) {
@@ -40,8 +42,15 @@ public class Menu implements RegisterLogin {
         boolean found = false;
         for (Person userSaved : userRepo.getUsers()) {
 
-            if (userSaved.getUser().equals(user) && !userSaved.getPasswd().equals(passwd)) {
-                throw new IllegalArgumentException("Wrong password");
+            try {
+                if (userSaved.getUser().equals(user) && !userSaved.getPasswd().equals(passwd)) {
+                    throw new CustomIllegalArgument("Wrong password");
+                }
+            }catch (CustomIllegalArgument error){
+                System.out.println("\n");
+                System.out.println(error.getMessage());
+                System.out.println("\n");
+                this.login(savingOption);
             }
 
             if (userSaved.getUser().equals(user) && userSaved.getPasswd().equals(passwd)) {
@@ -76,6 +85,7 @@ public class Menu implements RegisterLogin {
 
         if (!found) {
             System.out.println("User does not exist, do you want to register: ");
+            System.out.println("Type Ja/ja if yes, or anything else to close the program");
             String answer = console.nextLine();
 
             if (answer.equals("ja") || answer.equals("Ja")) {
@@ -86,31 +96,53 @@ public class Menu implements RegisterLogin {
     }
 
     @Override
-    public void register(int savingOption) throws IllegalArgumentException {
+    public void register(int savingOption) throws CustomIllegalArgument {
         this.populateUserRepo();
 
         Scanner console = new Scanner(System.in);
         System.out.println("You want to register as an: ");
+        System.out.println("Type Customer/customer -> Register as Customer");
+        System.out.println("Type Salesperson/salesperson -> Register as Salesperson");
         String type = console.nextLine();
 
-        if (!type.equals("Customer") && !type.equals("customer") && !type.equals("Salesperson") && !type.equals("salesperson")) {
-            throw new IllegalArgumentException("Type does not exist");
+        try {
+            if (!type.equals("Customer") && !type.equals("customer") && !type.equals("Salesperson") && !type.equals("salesperson")) {
+                throw new CustomIllegalArgument("Type does not exist");
+            }
+        }catch(CustomIllegalArgument error){
+            System.out.println("\n");
+            System.out.println(error.getMessage());
+            System.out.println("\n");
+            this.register(savingOption);
         }
 
-        if (type.equals("Salesperson") || type.equals("salesperson")) {
-            System.out.println("Password for Salesperson registration:");
-            if (!console.nextLine().equals("admin")) {
-                System.out.println("Wrong password. Consider trying again");
-                exit(0);
+        try {
+            if (type.equals("Salesperson") || type.equals("salesperson")) {
+                System.out.println("Password for Salesperson registration:");
+                if (!console.nextLine().equals("admin")) {
+                    throw new CustomIllegalArgument("Wrong password. Consider trying again");
+                }
             }
+        }catch(CustomIllegalArgument error){
+            System.out.println("\n");
+            System.out.println(error.getMessage());
+            System.out.println("\n");
+            this.register(savingOption);
         }
 
         System.out.println("Your user name: ");
         String user = console.nextLine();
 
         for (Person userSaved : userRepo.getUsers()) {
-            if (userSaved.getUser().equals(user)) {
-                throw new IllegalArgumentException("User already exist. Consider logging in");
+            try {
+                if (userSaved.getUser().equals(user)) {
+                    throw new CustomIllegalArgument("User already exist. Consider logging in");
+                }
+            }catch(CustomIllegalArgument error){
+                System.out.println("\n");
+                System.out.println(error.getMessage());
+                System.out.println("\n");
+                this.login(savingOption);
             }
         }
 

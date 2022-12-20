@@ -1,9 +1,11 @@
+import Errors.CustomIllegalArgument;
+
 import java.util.Scanner;
 
 import static java.lang.System.exit;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CustomIllegalArgument {
         Menu menu = new Menu();
         Scanner console = new Scanner(System.in);
 
