@@ -315,6 +315,8 @@ public class Menu implements RegisterLogin {
                     console.nextLine();
 
                     System.out.println("Do you want to add a car or a part to inventory?");
+                    System.out.println("Type Car/car -> Add a new car");
+                    System.out.println("Type Part/part -> Add a new part");
                     String type = console.nextLine();
 
                     if (type.equals("Car") || type.equals("car")) {
@@ -455,6 +457,9 @@ public class Menu implements RegisterLogin {
                             console.nextLine();
                             product = merch;
                             System.out.println("What category do you want to update:");
+                            System.out.println("Type Price/price -> update price");
+                            System.out.println("Type Add parts/add parts -> add new parts to the car");
+                            System.out.println("Type Add cars/add cars -> add new cars to the part");
                             String category = console.nextLine();
 
                             if (category.equals("Price") || category.equals("price")) {
