@@ -29,6 +29,11 @@ public class Salesperson extends Person implements DealershipSystem {
         return salary;
     }
 
+    /**
+     * @param merch to be added to the merch-repository
+     * @throws CustomIllegalArgument if the merch is already stored in the merch-repository
+     * Adds a new merch locally to the merch-repository
+     */
     @Override
     public void add(Merchandise merch) throws CustomIllegalArgument{
         for(Merchandise product : this.inMemoInventory.getCarsAndParts()){
@@ -39,6 +44,16 @@ public class Salesperson extends Person implements DealershipSystem {
         this.inMemoInventory.add_Merch(merch);
     }
 
+    /**
+     * @param id of the new car
+     * @param brand of the new car
+     * @param model of the new car
+     * @param price of the new car
+     * @param yearOfReg of the new car
+     * @param motor of the new car
+     * @param parts of the new car
+     * Adds a new car in the database of the merch-repository
+     */
     public void insertNewCar(int id, String brand, String model, double price, int yearOfReg, String motor, List<Part> parts) {
         String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
@@ -67,6 +82,14 @@ public class Salesperson extends Person implements DealershipSystem {
         }
     }
 
+    /**
+     * @param id of the new part
+     * @param brand of the new part
+     * @param model of the new part
+     * @param price of the new part
+     * @param cars of the new car
+     * Adds a new part in the database of the merch-repository
+     */
     public void insertNewPart(int id, String brand, String model, double price, List<Car> cars) {
         String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
@@ -95,6 +118,12 @@ public class Salesperson extends Person implements DealershipSystem {
         }
     }
 
+
+    /**
+     * @param ID of the merch to be removed
+     * @throws CustomIllegalArgument if the ID is not found
+     * Removes a merch from the locally merch-repository
+     */
     @Override
     public void remove(int ID) throws CustomIllegalArgument{
         boolean found = false;
@@ -110,6 +139,10 @@ public class Salesperson extends Person implements DealershipSystem {
         }
     }
 
+    /**
+     * @param id of the merch to be removed
+     * Removes a merch in the database of the merch-repository
+     */
     public void deleteProduct(int id){
         String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
@@ -156,6 +189,11 @@ public class Salesperson extends Person implements DealershipSystem {
         }
     }
 
+    /**
+     * @param merch to be updated
+     * @throws CustomIllegalArgument if the merch is not found
+     * Updates a given merch in the locally merch-repository
+     */
     @Override
     public void update(Merchandise merch) throws CustomIllegalArgument{
         boolean found = false;
@@ -172,6 +210,11 @@ public class Salesperson extends Person implements DealershipSystem {
         }
     }
 
+    /**
+     * @param id of the merch to be updated
+     * @param newPrice of the merch to be updated
+     * Updates the price of the given merch in the database of the merch-repository
+     */
     public void updatePrice(int id, Double newPrice){
         String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
@@ -209,6 +252,11 @@ public class Salesperson extends Person implements DealershipSystem {
         }
     }
 
+    /**
+     * @param id of the car to be updated
+     * @param parts to be added to the given car
+     * Updates the parts for a given car in the database of the merch-repository
+     */
     public void updatePartsForCar(int id, List<Part> parts){
         String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
@@ -230,6 +278,12 @@ public class Salesperson extends Person implements DealershipSystem {
         }
     }
 
+
+    /**
+     * @param id of the part to be updated
+     * @param cars to be added to the given part
+     * Updates the cars for a given part in the database of the merch-repository
+     */
     public void updateCarsForPart(int id, List<Car> cars){
         String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
@@ -251,6 +305,9 @@ public class Salesperson extends Person implements DealershipSystem {
         }
     }
 
+    /**
+     * @return all the cars of the merch-repository
+     */
     @Override
     public List<Car> getAllCars() {
         List<Car> cars = new ArrayList<>();
@@ -263,6 +320,9 @@ public class Salesperson extends Person implements DealershipSystem {
         return cars;
     }
 
+    /**
+     * @return all the parts of the merch-repository
+     */
     @Override
     public List<Part> getAllParts() {
         List<Part> parts = new ArrayList<>();
@@ -274,6 +334,11 @@ public class Salesperson extends Person implements DealershipSystem {
         return parts;
     }
 
+    /**
+     * @param ID of the car
+     * @return all the parts that can be used for the given car
+     * @throws CustomIllegalArgument if the car is not found
+     */
     public List<Part> getAllPartsForACar(int ID) throws CustomIllegalArgument {
         for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
             if (merch.getID() == ID && merch instanceof Car) {
@@ -284,6 +349,11 @@ public class Salesperson extends Person implements DealershipSystem {
         throw new CustomIllegalArgument("Car does not exist");
     }
 
+    /**
+     * @param ID of the part
+     * @return all the cars on which the given part can be used
+     * @throws CustomIllegalArgument if the part is not found
+     */
     public List<Car> getAllCarsForAPart(int ID) throws CustomIllegalArgument {
         for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
             if (merch.getID() == ID && merch instanceof Part) {

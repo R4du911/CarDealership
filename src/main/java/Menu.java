@@ -18,6 +18,11 @@ public class Menu implements RegisterLogin {
     private Inventory inventory;
     private final UserRepo userRepo = new UserRepo();
 
+    /**
+     * @param savingOption locally or database
+     * @throws CustomIllegalArgument if the user does not exist or input is wrong
+     * Login method for users
+     */
     @Override
     public void login(int savingOption) throws CustomIllegalArgument{
         this.populateUserRepo();
@@ -95,6 +100,11 @@ public class Menu implements RegisterLogin {
 
     }
 
+    /**
+     * @param savingOption locally or database
+     * @throws CustomIllegalArgument if the user already exists or the input is wrong
+     * Register method for users
+     */
     @Override
     public void register(int savingOption) throws CustomIllegalArgument {
         this.populateUserRepo();
@@ -190,6 +200,10 @@ public class Menu implements RegisterLogin {
         }
     }
 
+    /**
+     * @param savingOption locally or database
+     * Menu of the application
+     */
     public void menu(int savingOption) {
         if (controller instanceof CustomerController) {
 

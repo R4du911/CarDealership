@@ -41,6 +41,9 @@ public class Customer extends Person implements CustomerSystem {
         this.money = money;
     }
 
+    /**
+     * @return all cars from the merch-repository
+     */
     public List<Car> getAllCars() {
         List<Car> cars = new ArrayList<>();
 
@@ -53,6 +56,9 @@ public class Customer extends Person implements CustomerSystem {
         return cars;
     }
 
+    /**
+     * @return all parts from the merch-repository
+     */
     public List<Part> getAllParts() {
         List<Part> parts = new ArrayList<>();
         for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
@@ -63,6 +69,11 @@ public class Customer extends Person implements CustomerSystem {
         return parts;
     }
 
+    /**
+     * @param date when the order was placed
+     * @throws CustomIllegalArgument if the customer's shopping basket is empty, or if the user does not have enough money
+     * The order is placed, the selected merch are bought and saved locally to the customer's order list and the customer's shopping list is emptied
+     */
     public void addOrder(Date date) throws CustomIllegalArgument {
         Double sumPrice = 0.0;
 
@@ -86,6 +97,12 @@ public class Customer extends Person implements CustomerSystem {
         this.pendingOrder.setPurchased(new ArrayList<>());
     }
 
+    /**
+     *  @param date when the order was placed
+     *  @throws CustomIllegalArgument if the customer's shopping basket is empty, or if the user does not have enough money
+     *  The order is placed, the selected merch are bought and saved in the database in the customer's order list and the customer's
+     *  shopping list is emptied
+     */
     public void addOrderToDatabase(Date date) throws CustomIllegalArgument{
         Double sumPrice = 0.0;
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -144,6 +161,9 @@ public class Customer extends Person implements CustomerSystem {
 
     }
 
+    /**
+     * The orders of each customer are being saved locally from database
+     */
     public void populateOrderList(){
         String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
@@ -203,6 +223,11 @@ public class Customer extends Person implements CustomerSystem {
         }
     }
 
+    /**
+     * @param ID - of the merch to be added to the shopping list
+     * @throws CustomIllegalArgument if the given ID is not found
+     * Adds a merch to the customer's locally saved shopping list
+     */
     public void addProductToList(int ID) throws CustomIllegalArgument{
         for(Merchandise merch : this.inMemoInventory.getCarsAndParts()){
             if(merch.getID() == ID){
@@ -214,6 +239,11 @@ public class Customer extends Person implements CustomerSystem {
 
     }
 
+    /**
+     * @param IDProd - of the merch to be added to the shopping list
+     * @throws CustomIllegalArgument if the given ID is not found
+     * Adds a merch in the database to the customer's shopping list
+     */
     public void addProductToShoppingListDatabase(int IDProd) {
         String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
@@ -233,6 +263,9 @@ public class Customer extends Person implements CustomerSystem {
         }
     }
 
+    /**
+     * The shopping lists of each customer are being saved locally from the database
+     */
     public void populateShoppingList(){
         String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
@@ -264,6 +297,11 @@ public class Customer extends Person implements CustomerSystem {
         }
     }
 
+    /**
+     * @param ID of the merch to be removed from the shopping list
+     * @throws CustomIllegalArgument if the given ID is not found
+     * Removes a merch from the customer's locally saved shopping list
+     */
     public void removeProductFromList(int ID) throws CustomIllegalArgument{
         boolean found = false;
         for(Merchandise product : this.pendingOrder.getPurchased()) {
@@ -278,6 +316,11 @@ public class Customer extends Person implements CustomerSystem {
         }
     }
 
+    /**
+     * @param IDProd of the merch to be removed from the shopping list
+     * @throws CustomIllegalArgument if the given ID is not found
+     * Removes a merch from the database from teh customer's shopping list
+     */
     public void removeProductFromShoppingListDatabase(int IDProd) {
         String url = "jdbc:sqlserver://DESKTOP-GRAUEBQ\\SQLEXPRESS:1433;database=CarDealership;encrypt=true;trustServerCertificate=true;loginTimeout=30";
         String userName = "radu";
@@ -297,10 +340,18 @@ public class Customer extends Person implements CustomerSystem {
         }
     }
 
+    /**
+     * @return all items that are selected in the customer's shopping list
+     */
     public List<Merchandise> viewPendingOrder() {
         return this.pendingOrder.getPurchased();
     }
 
+    /**
+     * @param ID of the car
+     * @return all parts that can be used on the given car
+     * @throws CustomIllegalArgument if the given ID is not found
+     */
     public List<Part> getAllPartsForACar(int ID) throws CustomIllegalArgument {
         for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
             if (merch.getID() == ID && merch instanceof Car) {
@@ -311,6 +362,11 @@ public class Customer extends Person implements CustomerSystem {
         throw new CustomIllegalArgument("Car does not exist");
     }
 
+    /**
+     * @param ID of the part
+     * @return all cars for which the part can be used
+     * @throws CustomIllegalArgument if the given ID is not found
+     */
     public List<Car> getAllCarsForAPart(int ID) throws CustomIllegalArgument {
         for (Merchandise merch : this.inMemoInventory.getCarsAndParts()) {
             if (merch.getID() == ID && merch instanceof Part) {

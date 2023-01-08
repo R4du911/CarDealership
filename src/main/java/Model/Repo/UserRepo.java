@@ -12,11 +12,11 @@ public class UserRepo {
         return users;
     }
 
+    /**
+     * @param user - new user to be added
+     * Adds a new user to the user-repository
+     */
     public void addUser(Person user){
         users.add(user);
-    }
-
-    public void removeUser(Person user){
-        users.remove(user);
     }
 }

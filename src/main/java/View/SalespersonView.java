@@ -6,6 +6,11 @@ import java.util.List;
 
 public class SalespersonView {
 
+
+    /**
+     * @param allCars car list
+     * prints all cars from the car list
+     */
     public void printAllCars(List<Car> allCars) {
         if(allCars.isEmpty()){
             System.out.print("No cars found!" + "\n");
@@ -18,6 +23,10 @@ public class SalespersonView {
         System.out.println("\n");
     }
 
+    /**
+     * @param allParts part list
+     * prints all parts from the part list
+     */
     public void printAllParts(List<Part> allParts) {
         if(allParts.isEmpty()){
             System.out.print("No parts found!" + "\n");
@@ -29,6 +38,10 @@ public class SalespersonView {
         }
     }
 
+    /**
+     * @param salary of a salesperson
+     * prints the salary of a salesperson
+     */
     public void printSalary(double salary) {
         System.out.println("Salary: " + salary);
     }
