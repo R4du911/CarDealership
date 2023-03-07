@@ -1,5 +1,11 @@
 # Car-Dealership
 
+What I learnt from this project:
+- more polymorphism
+- MVC architecture
+- Maven POM.xml and dependencies
+- JDBC and Microsoft SQL Server
+
 A car dealership needs an application where customers can log in to buy merchandise (cars or parts).
 This application is also connected to a database saved in Microsoft SQL Server with the help of Maven and JDBC.
 Additionally, the application also implements JUnit Test.
